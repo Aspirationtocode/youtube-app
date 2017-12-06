@@ -4,9 +4,20 @@ const STATUSBAR_HEIGHT = getStatusBarHeight();
 
 export default EStyleSheet.create({
 	gradient: {
-		marginTop: STATUSBAR_HEIGHT,
 		flex: 1,
 		alignItems: 'center',
 		justifyContent: 'center',
+	},
+	inputContainer: {
+		shadowColor: 'rgba(0, 0, 0, .16)',
+		shadowOffset: { width: 0, height: 3 },
+		shadowOpacity: 1,
+		shadowRadius: 6,
+		backgroundColor: 'transparent',
+	},
+	navigationHeader: {
+		backgroundColor: 'deepskyblue',
+		borderWidth: 1,
+		borderBottomColor: 'white',
 	},
 });
