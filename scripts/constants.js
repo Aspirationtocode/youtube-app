@@ -1,3 +1,5 @@
+// export const START_FETCH_TODOS = 'START_FETCH_TODOS';
+
 export const makeNavigationOptions = specificStyles => {
 	const baseStyles = {
 		headerTintColor: '#F83600',
