@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Platform } from 'react-native';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 
 import { createStore, applyMiddleware, compose } from 'redux';
 
@@ -17,21 +18,7 @@ EStyleSheet.build({
 	$mainDarkColor: '#5E3C14',
 });
 
-function configureStore(initialState) {
-	const enhancer = compose(
-		applyMiddleware(thunk),
-		global.reduxNativeDevTools
-			? global.reduxNativeDevTools(/*options*/)
-			: noop => noop
-	);
-	let store = createStore(allReducers, initialState, enhancer);
-	// If you have other enhancers & middlewares
-	// update the store after creating / changing to allow devTools to use them
-
-	return store;
-}
-
-let store = configureStore({});
+let store = createStore(allReducers, applyMiddleware(thunk, logger));
 
 class App extends Component {
 	render() {
