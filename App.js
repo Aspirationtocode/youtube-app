@@ -17,7 +17,21 @@ EStyleSheet.build({
 	$mainDarkColor: '#5E3C14',
 });
 
-let store = createStore(allReducers, applyMiddleware(thunk));
+function configureStore(initialState) {
+	const enhancer = compose(
+		applyMiddleware(thunk),
+		global.reduxNativeDevTools
+			? global.reduxNativeDevTools(/*options*/)
+			: noop => noop
+	);
+	let store = createStore(allReducers, initialState, enhancer);
+	// If you have other enhancers & middlewares
+	// update the store after creating / changing to allow devTools to use them
+
+	return store;
+}
+
+let store = configureStore({});
 
 class App extends Component {
 	render() {
