@@ -1,9 +1,9 @@
 import EStyleSheet from "react-native-extended-stylesheet";
 
 export default EStyleSheet.create({
-  themeElement: {
-    $themeElementWidth: "30%",
-    width: "$themeElementWidth",
+  questionElement: {
+    $questionElementWidth: "30%",
+    width: "$questionElementWidth",
     height: 60,
     backgroundColor: "$mainColor",
     justifyContent: "center",
@@ -14,10 +14,11 @@ export default EStyleSheet.create({
     shadowOpacity: 1,
     shadowRadius: 6,
     marginBottom: 40,
+    minWidth: 240,
     borderColor: "#E6bb0F",
     borderWidth: 3
   },
-  themeElementText: {
+  questionElementText: {
     backgroundColor: "transparent",
     fontSize: 23,
     color: "$mainDarkColor"

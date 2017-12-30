@@ -5,14 +5,14 @@ import styles from "./styles";
 
 import CustomButton from "../CustomButton/";
 
-export default class ThemeElement extends Component {
+export default class QuestionElement extends Component {
   render() {
-    const { theme, handleThemePress } = this.props;
+    const { question, handleThemePress } = this.props;
     return (
       <CustomButton
-        text={theme}
-        containerStyle={styles.themeElement}
-        textStyle={styles.themeElementText}
+        text={question}
+        containerStyle={styles.questionElement}
+        textStyle={styles.questionElementText}
         handlePress={handleThemePress}
       />
     );

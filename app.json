@@ -1,7 +1,7 @@
 {
-	"expo": {
-		"sdkVersion": "22.0.0",
-		"orientation": "landscape",
-		"name": "Test App"
-	}
+  "expo": {
+    "sdkVersion": "22.0.0",
+    "orientation": "landscape",
+    "name": "Test App"
+  }
 }
