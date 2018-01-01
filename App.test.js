@@ -1,9 +1,11 @@
-import React from 'react';
-import App from './App';
+/* eslint-disable */
+import React from "react";
 
-import renderer from 'react-test-renderer';
+import renderer from "react-test-renderer";
 
-it('renders without crashing', () => {
+import App from "./App";
+
+it("renders without crashing", () => {
   const rendered = renderer.create(<App />).toJSON();
   expect(rendered).toBeTruthy();
 });

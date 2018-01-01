@@ -1,24 +1,24 @@
-import React, { Component } from "react";
-import { View, TouchableOpacity, Text } from "react-native";
+import React, { Component } from 'react';
+import { TouchableOpacity, Text } from 'react-native';
 
-import styles from "./styles";
+import styles from './styles';
 
 export default class CustomButton extends Component {
   state = {
-    canPress: true
+    canPress: true,
   };
   handlePress = () => {
     this.setState(
       {
-        canPress: false
+        canPress: false,
       },
       () => {
         setTimeout(() => {
           this.setState({
-            canPress: true
+            canPress: true,
           });
         }, 1000);
-      }
+      },
     );
     if (this.state.canPress) {
       this.props.handlePress();

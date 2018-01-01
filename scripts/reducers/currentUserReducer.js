@@ -1,13 +1,13 @@
 const initialState = {
-	data: null,
+  data: null,
 };
 
 const currentUserReducer = (state = initialState, action) => {
-	switch (action.type) {
-		default: {
-			return state;
-		}
-	}
+  switch (action.type) {
+    default: {
+      return state;
+    }
+  }
 };
 
 export default currentUserReducer;

@@ -1,34 +1,39 @@
-import React, { Component } from "react";
-import { View, Text } from "react-native";
-import { LinearGradient } from "expo";
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import { LinearGradient } from 'expo';
 
-import styles from "./styles";
+import styles from './styles';
 
-import QuestionElement from "../../components/QuestionElement";
-import InfoPanel from "../../components/InfoPanel";
+import GoElement from '../../components/GoElement';
+import InfoPanel from '../../components/InfoPanel';
 
-import { makeNavigationOptions } from "../../constants";
+import { makeNavigationOptions } from '../../constants';
 
 const questions = [
-  "Вопрос 1",
-  "Вопрос 2",
-  "Вопрос 3",
-  "Вопрос 4",
-  "Вопрос 5",
-  "Вопрос 6"
+  'Вопрос 1',
+  'Вопрос 2',
+  'Вопрос 3',
+  'Вопрос 4',
+  'Вопрос 5',
+  'Вопрос 6',
 ];
 
 export default class QuestionsScreen extends Component {
-  static navigationOptions = makeNavigationOptions({ title: "Выбор вопроса" });
-  renderQuestionElements = (startIndex, endIndex) => {
-    return questions.slice(startIndex, endIndex).map(question => {
-      return <QuestionElement question={question} key={question} />;
-    });
-  };
+  static navigationOptions = makeNavigationOptions({ title: 'Выбор вопроса' });
+  renderQuestionElements = (startIndex, endIndex) =>
+    questions
+      .slice(startIndex, endIndex)
+      .map(question => (
+        <GoElement
+          text={question}
+          key={question}
+          specificStyle={{ minWidth: 240 }}
+        />
+      ));
   render() {
     return (
       <LinearGradient
-        colors={["#F83600", "#FE8C00"]}
+        colors={['#F83600', '#FE8C00']}
         start={[0.5, 0]}
         end={[0, 0.5]}
         style={styles.gradient}

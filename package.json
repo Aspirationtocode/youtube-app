@@ -15,7 +15,8 @@
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js --watch",
-    "postinstall": "rndebugger-open --expo"
+    "postinstall": "rndebugger-open --expo",
+    "lint": "eslint --fix ./**/**/*.js"
   },
   "jest": {
     "preset": "jest-expo"

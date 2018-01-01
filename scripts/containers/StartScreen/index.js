@@ -1,36 +1,35 @@
-import React, { Component } from "react";
-import { View, TextInput, Text, Dimensions } from "react-native";
-import { Button } from "react-native-elements";
-import { LinearGradient } from "expo";
+import React, { Component } from 'react';
+import { View } from 'react-native';
+import { LinearGradient } from 'expo';
 
-import KeyboardSpacer from "react-native-keyboard-spacer";
+import KeyboardSpacer from 'react-native-keyboard-spacer';
 
-import CustomTextInput from "../../components/CustomTextInput/";
-import CustomButton from "../../components/CustomButton/";
+import CustomTextInput from '../../components/CustomTextInput/';
+import CustomButton from '../../components/CustomButton/';
 
-import styles from "./styles";
+import styles from './styles';
 
-import { makeNavigationOptions } from "../../constants";
+import { makeNavigationOptions } from '../../constants';
 
 export default class StartScreen extends Component {
-  static navigationOptions = makeNavigationOptions({ title: "Вход" });
+  static navigationOptions = makeNavigationOptions({ title: 'Вход' });
   state = {
-    currentUserName: null
+    currentUserName: null,
   };
   handleSignIn = () => {
     const { navigate } = this.props.navigation;
-    navigate("Themes");
+    navigate('Themes');
   };
-  handleCurrentUserNameChange = name => {
+  handleCurrentUserNameChange = (name) => {
     this.setState({
-      currentUserName: name
+      currentUserName: name,
     });
   };
   render() {
     const { state } = this;
     return (
       <LinearGradient
-        colors={["#F83600", "#FE8C00"]}
+        colors={['#F83600', '#FE8C00']}
         start={[0.5, 0]}
         end={[0, 0.5]}
         style={styles.gradient}
