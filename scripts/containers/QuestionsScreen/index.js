@@ -20,6 +20,10 @@ const questions = [
 
 export default class QuestionsScreen extends Component {
   static navigationOptions = makeNavigationOptions({ title: 'Выбор вопроса' });
+  handleQuestionPress = () => {
+    const { navigate } = this.props.navigation;
+    navigate('Question');
+  };
   renderQuestionElements = (startIndex, endIndex) =>
     questions
       .slice(startIndex, endIndex)
@@ -28,6 +32,7 @@ export default class QuestionsScreen extends Component {
           text={question}
           key={question}
           specificStyle={{ minWidth: 240 }}
+          handleGoElementPress={this.handleQuestionPress}
         />
       ));
   render() {
