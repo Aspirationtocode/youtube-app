@@ -2,7 +2,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default EStyleSheet.create({
   buttonStyle: {
-    height: 60,
+    minHeight: 60,
     maxWidth: 200,
     backgroundColor: '$mainColor',
     alignItems: 'center',

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import { LinearGradient } from 'expo';
+import { connect } from 'react-redux';
 
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 
+import { changeCurrentUserName } from '../../actions';
 import CustomTextInput from '../../components/CustomTextInput/';
 import CustomButton from '../../components/CustomButton/';
 
@@ -11,14 +13,19 @@ import styles from './styles';
 
 import { makeNavigationOptions } from '../../constants';
 
-export default class StartScreen extends Component {
+class StartScreen extends Component {
   static navigationOptions = makeNavigationOptions({ title: 'Вход' });
   state = {
     currentUserName: null,
   };
   handleSignIn = () => {
     const { navigate } = this.props.navigation;
-    navigate('Themes');
+    const { currentUserName } = this.state;
+    const { dispatch } = this.props;
+    if (currentUserName.trim().length >= 3) {
+      dispatch(changeCurrentUserName(currentUserName));
+      navigate('Themes');
+    }
   };
   handleCurrentUserNameChange = (name) => {
     this.setState({
@@ -27,6 +34,7 @@ export default class StartScreen extends Component {
   };
   render() {
     const { state } = this;
+
     return (
       <LinearGradient
         colors={['#F83600', '#FE8C00']}
@@ -47,3 +55,7 @@ export default class StartScreen extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({ currentUserName: state.currentUserName });
+
+export default connect(mapStateToProps)(StartScreen);

@@ -1,4 +1,4 @@
-// export const START_FETCH_TODOS = 'START_FETCH_TODOS';
+export const CHANGE_CURRENT_USER_NAME = 'CHANGE_CURRENT_USER_NAME';
 
 export const makeNavigationOptions = (specificStyles) => {
   const baseStyles = {
