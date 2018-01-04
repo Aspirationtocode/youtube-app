@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 
 import KeyboardSpacer from "react-native-keyboard-spacer";
 
-import { changeCurrentUserName } from "../../actions";
+import { fetchCurrentUserData } from "../../actions";
 import CustomTextInput from "../../components/CustomTextInput/";
 import CustomButton from "../../components/CustomButton/";
 
@@ -23,7 +23,7 @@ class StartScreen extends Component {
     const { currentUserName } = this.state;
     const { dispatch } = this.props;
     if (currentUserName && currentUserName.trim().length >= 3) {
-      dispatch(changeCurrentUserName(currentUserName));
+      dispatch(fetchCurrentUserData(dispatch, currentUserName));
       navigate("Themes");
     }
   };

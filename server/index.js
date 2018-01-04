@@ -10,9 +10,9 @@ const app = express();
 const http = require("http").Server(app);
 
 const mongodbURI =
-  "mongodb://aspiretocode:aspiretocode@ds235827.mlab.com:35827/youtube-app";
+  "mongodb://aspiretocode:aspiretocode@ds139067.mlab.com:39067/youtube-application";
 // connect to mongodb
-mongoose.connect(mongodbURI, { useMongoClient: true });
+mongoose.connect(mongodbURI);
 
 mongoose.Promise = global.Promise;
 
@@ -27,6 +27,7 @@ app.use(
 );
 
 app.get("/", (req, res) => {
+  console.log("IPAD CONNECTED");
   res.sendFile(`${__dirname}/index.html`);
 });
 

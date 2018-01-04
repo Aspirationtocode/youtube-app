@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
+const Theme = require("./theme");
 
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
   name: String,
-  surname: String,
-  age: Number
+  themes: [Theme.schema]
 });
 
 const User = mongoose.model("user", UserSchema);

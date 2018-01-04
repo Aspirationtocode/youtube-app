@@ -31,6 +31,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "axios": "^0.17.1",
     "css-to-matrix": "^1.0.0",
     "expo": "^22.0.2",
     "express": "^4.16.2",
