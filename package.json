@@ -24,7 +24,8 @@
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js --watch",
     "postinstall": "rndebugger-open --expo",
-    "lint": "eslint --fix ./**/**/*.js"
+    "lint": "eslint --fix ./**/**/*.js",
+    "server": "nodemon server.js"
   },
   "jest": {
     "preset": "jest-expo"
@@ -32,8 +33,11 @@
   "dependencies": {
     "css-to-matrix": "^1.0.0",
     "expo": "^22.0.2",
+    "express": "^4.16.2",
+    "express-fileupload": "^0.3.0",
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
+    "mongoose": "^5.0.0-rc1",
     "react": "16.0.0-beta.5",
     "react-native": "^0.49.5",
     "react-native-debugger-open": "^0.3.15",

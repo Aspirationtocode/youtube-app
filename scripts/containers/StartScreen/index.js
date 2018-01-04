@@ -1,35 +1,35 @@
-import React, { Component } from 'react';
-import { View } from 'react-native';
-import { LinearGradient } from 'expo';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { View } from "react-native";
+import { LinearGradient } from "expo";
+import { connect } from "react-redux";
 
-import KeyboardSpacer from 'react-native-keyboard-spacer';
+import KeyboardSpacer from "react-native-keyboard-spacer";
 
-import { changeCurrentUserName } from '../../actions';
-import CustomTextInput from '../../components/CustomTextInput/';
-import CustomButton from '../../components/CustomButton/';
+import { changeCurrentUserName } from "../../actions";
+import CustomTextInput from "../../components/CustomTextInput/";
+import CustomButton from "../../components/CustomButton/";
 
-import styles from './styles';
+import styles from "./styles";
 
-import { makeNavigationOptions } from '../../constants';
+import { makeNavigationOptions } from "../../constants";
 
 class StartScreen extends Component {
-  static navigationOptions = makeNavigationOptions({ title: 'Вход' });
+  static navigationOptions = makeNavigationOptions({ title: "Вход" });
   state = {
-    currentUserName: null,
+    currentUserName: null
   };
   handleSignIn = () => {
     const { navigate } = this.props.navigation;
     const { currentUserName } = this.state;
     const { dispatch } = this.props;
-    if (currentUserName.trim().length >= 3) {
+    if (currentUserName && currentUserName.trim().length >= 3) {
       dispatch(changeCurrentUserName(currentUserName));
-      navigate('Themes');
+      navigate("Themes");
     }
   };
-  handleCurrentUserNameChange = (name) => {
+  handleCurrentUserNameChange = name => {
     this.setState({
-      currentUserName: name,
+      currentUserName: name
     });
   };
   render() {
@@ -37,7 +37,7 @@ class StartScreen extends Component {
 
     return (
       <LinearGradient
-        colors={['#F83600', '#FE8C00']}
+        colors={["#F83600", "#FE8C00"]}
         start={[0.5, 0]}
         end={[0, 0.5]}
         style={styles.gradient}
