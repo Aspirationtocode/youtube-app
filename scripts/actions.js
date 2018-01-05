@@ -10,7 +10,6 @@ export const fetchCurrentUserData = (dispatch, currentUserName) => {
     dispatch({ type: START_FETCH_CURRENT_USER_DATA });
     try {
       const response = await db.fetchUser(currentUserName);
-      console.log(response);
       const currentUserData = response.data;
       dispatch({
         type: FINISH_FETCH_CURRENT_USER_DATA,
