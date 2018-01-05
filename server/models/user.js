@@ -5,6 +5,7 @@ const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
   name: String,
+  photoURL: String,
   themes: [Theme.schema]
 });
 

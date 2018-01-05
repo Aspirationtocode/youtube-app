@@ -1,7 +1,18 @@
 {
   "expo": {
+    "name": "Youtube App",
+    "slug": "youtube-app",
+    "icon": "./app-icon.png",
+    "loading": {
+      "icon": "./app-icon.png"
+    },
+    "privacy": "unlisted",
     "sdkVersion": "22.0.0",
-    "orientation": "landscape",
-    "name": "Test App"
+    "ios": {
+      "bundleIdentifier": "aspiretocode"
+    },
+    "android": {
+      "package": "aspiretocode"
+    }
   }
 }

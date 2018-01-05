@@ -21,7 +21,12 @@ const uploadUserHandler = (req, res) => {
 const getUserHandler = (req, res) => {
   const currentUserName = req.query.username;
   User.findOne({ name: currentUserName }, (err, user) => {
-    res.send(user);
+    if (user) {
+      res.send(user);
+    } else {
+      res.status(500).send({ error: `Can't find user.` });
+    }
+
     // if (user) {
     // 	res.status(200);
     // 	res.statusMessage = 'User is already a chat member';

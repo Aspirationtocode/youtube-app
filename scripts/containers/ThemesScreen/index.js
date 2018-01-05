@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View, Text } from "react-native";
+import { View, Text, ActivityIndicator } from "react-native";
 import { LinearGradient } from "expo";
 import { connect } from "react-redux";
 
@@ -18,20 +18,40 @@ class ThemesScreen extends Component {
   };
   renderThemeElements = () => {
     const { currentUser } = this.props;
+    const errorRender = (
+      <View>
+        <Text>Такого игрока нет в базе!</Text>
+      </View>
+    );
+    const fetchingRender = (
+      <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+        <ActivityIndicator size="large" color="#00ff00" />
+      </View>
+    );
+
+    if (currentUser.error) {
+      return errorRender;
+    }
+
+    if (currentUser.fetching) {
+      return fetchingRender;
+    }
+
+    const fetchedRender = currentUser.data.themes.map(theme => (
+      <GoElement
+        text={theme.themeTitle}
+        key={theme._id}
+        handleGoElementPress={this.handleThemePress}
+      />
+    ));
+
     if (currentUser.fetched) {
-      return currentUser.data.themes.map(theme => (
-        <GoElement
-          text={theme.themeTitle}
-          key={theme._id}
-          handleGoElementPress={this.handleThemePress}
-        />
-      ));
-    } else {
-      return <Text>Не загрузилосzь, блин</Text>;
+      return fetchedRender;
     }
   };
 
   render() {
+    const { data } = this.props.currentUser;
     return (
       <LinearGradient
         colors={["#F83600", "#FE8C00"]}
@@ -40,7 +60,7 @@ class ThemesScreen extends Component {
         style={styles.gradient}
       >
         <View style={styles.themesContainer}>{this.renderThemeElements()}</View>
-        <InfoPanel />
+        {data && <InfoPanel />}
       </LinearGradient>
     );
   }
