@@ -1,3 +1,3 @@
-const appStart = require("./server/index");
+const appStart = require('./server/index');
 
 appStart();

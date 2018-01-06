@@ -5,10 +5,10 @@ import QuestionsScreen from '../../containers/QuestionsScreen/';
 import QuestionScreen from '../../containers/QuestionScreen/';
 
 const AppContainer = StackNavigator({
-  Main: { screen: StartScreen },
-  Themes: { screen: ThemesScreen },
-  Questions: { screen: QuestionsScreen },
-  Question: { screen: QuestionScreen },
+	Main: { screen: StartScreen },
+	Themes: { screen: ThemesScreen },
+	Questions: { screen: QuestionsScreen },
+	Question: { screen: QuestionScreen },
 });
 
 export default AppContainer;

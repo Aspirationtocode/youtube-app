@@ -11,14 +11,14 @@ import AppContainer from './scripts/containers/AppContainer';
 import allReducers from './scripts/reducers';
 
 EStyleSheet.build({
-  $mainColor: '#E6FF06',
-  $mainDarkColor: '#5E3C14',
+	$mainColor: '#E6FF06',
+	$mainDarkColor: '#5E3C14',
 });
 
 const store = createStore(allReducers, applyMiddleware(thunk, logger));
 
 export default () => (
-  <Provider store={store}>
-    <AppContainer />
-  </Provider>
+	<Provider store={store}>
+		<AppContainer />
+	</Provider>
 );
