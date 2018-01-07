@@ -16,14 +16,14 @@ import { makeNavigationOptions } from '../../constants';
 class StartScreen extends Component {
 	static navigationOptions = makeNavigationOptions({ title: 'Вход' });
 	state = {
-		currentUserName: null,
+		currentUserName: 'Виталий Покашеварим',
 	};
 	handleSignIn = () => {
 		const { navigate } = this.props.navigation;
 		const { currentUserName } = this.state;
 		const { dispatch } = this.props;
 		if (currentUserName && currentUserName.trim().length >= 3) {
-			dispatch(fetchCurrentUserData(dispatch, currentUserName));
+			dispatch(fetchCurrentUserData(dispatch, currentUserName.trim()));
 			navigate('Themes');
 		}
 	};

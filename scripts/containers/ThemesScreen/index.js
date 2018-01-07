@@ -6,14 +6,17 @@ import { connect } from 'react-redux';
 import styles from './styles';
 
 import { makeNavigationOptions } from '../../constants';
+import { setCurrentTheme } from '../../actions';
 
 import GoElement from '../../components/GoElement';
 import InfoPanel from '../../components/InfoPanel';
 
 class ThemesScreen extends Component {
 	static navigationOptions = makeNavigationOptions({ title: 'Выбор тем' });
-	handleThemePress = () => {
+	handleThemePress = theme => {
 		const { navigate } = this.props.navigation;
+		const { dispatch } = this.props;
+		dispatch(setCurrentTheme(theme));
 		navigate('Questions');
 	};
 	renderThemeElements = () => {
@@ -41,7 +44,9 @@ class ThemesScreen extends Component {
 			<GoElement
 				text={theme.themeTitle}
 				key={theme._id}
-				handleGoElementPress={this.handleThemePress}
+				handleGoElementPress={() => {
+					this.handleThemePress(theme);
+				}}
 			/>
 		));
 

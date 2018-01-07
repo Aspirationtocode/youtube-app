@@ -1,6 +1,8 @@
 export const START_FETCH_CURRENT_USER_DATA = 'START_FETCH_CURRENT_USER_DATA';
 export const FINISH_FETCH_CURRENT_USER_DATA = 'FINISH_FETCH_CURRENT_USER_DATA';
 export const ERROR_FETCH_CURRENT_USER_DATA = 'ERROR_FETCH_CURRENT_USER_DATA';
+export const SET_CURRENT_THEME = 'SET_CURRENT_THEME';
+export const SET_CURRENT_QUESTION = 'SET_CURRENT_QUESTION';
 
 export const makeNavigationOptions = specificStyles => {
 	const baseStyles = {

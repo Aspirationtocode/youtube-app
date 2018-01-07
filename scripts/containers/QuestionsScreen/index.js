@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import { LinearGradient } from 'expo';
+import { connect } from 'react-redux';
 
 import styles from './styles';
 
@@ -8,6 +9,7 @@ import GoElement from '../../components/GoElement';
 import InfoPanel from '../../components/InfoPanel';
 
 import { makeNavigationOptions } from '../../constants';
+import { setCurrentQuestion } from '../../actions';
 
 const questions = [
 	'Вопрос 1',
@@ -18,23 +20,33 @@ const questions = [
 	'Вопрос 6',
 ];
 
-export default class QuestionsScreen extends Component {
-	static navigationOptions = makeNavigationOptions({ title: 'Выбор вопроса' });
-	handleQuestionPress = () => {
-		const { navigate } = this.props.navigation;
+class QuestionsScreen extends Component {
+	static navigationOptions = makeNavigationOptions({
+		title: `Выбор вопроса`,
+	});
+	handleQuestionPress = questionIndex => {
+		const { props } = this;
+		const { currentTheme, dispatch } = props;
+		const { navigate } = props.navigation;
+		const selectedQuestion = currentTheme.questions[questionIndex];
+		dispatch(setCurrentQuestion(selectedQuestion));
 		navigate('Question');
 	};
-	renderQuestionElements = (startIndex, endIndex) =>
-		questions
-			.slice(startIndex, endIndex)
-			.map(question => (
+	renderQuestionElements = () => {
+		return questions.map((question, questionIndex) => {
+			return (
 				<GoElement
 					text={question}
 					key={question}
 					specificStyle={{ minWidth: 240 }}
-					handleGoElementPress={this.handleQuestionPress}
+					handleGoElementPress={() => {
+						this.handleQuestionPress(questionIndex);
+					}}
 				/>
-			));
+			);
+		});
+	};
+
 	render() {
 		return (
 			<LinearGradient
@@ -44,18 +56,17 @@ export default class QuestionsScreen extends Component {
 				style={styles.gradient}
 			>
 				<View style={styles.questionsContainer}>
-					<View style={styles.questionsSpecificContainer1}>
-						{this.renderQuestionElements(0, 3)}
-					</View>
-					<View style={styles.questionsSpecificContainer2}>
-						{this.renderQuestionElements(3, 5)}
-					</View>
-					<View style={styles.questionsSpecificContainer3}>
-						{this.renderQuestionElements(5, 6)}
-					</View>
+					{this.renderQuestionElements()}
 				</View>
 				<InfoPanel />
 			</LinearGradient>
 		);
 	}
 }
+
+const mapStateToProps = state => ({
+	currentTheme: state.currentTheme,
+	currentUser: state.currentUser,
+});
+
+export default connect(mapStateToProps)(QuestionsScreen);

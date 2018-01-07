@@ -1,9 +1,9 @@
 import axios from 'axios';
-import domen from './domen';
+import host from './host';
 
 const db = {
 	fetchUser(username) {
-		return axios.get(`${domen}/api/user`, {
+		return axios.get(`${host}/api/user`, {
 			params: {
 				username,
 			},
