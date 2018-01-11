@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { LinearGradient } from 'expo';
 import { connect } from 'react-redux';
 
 import KeyboardSpacer from 'react-native-keyboard-spacer';
@@ -8,6 +7,7 @@ import KeyboardSpacer from 'react-native-keyboard-spacer';
 import { fetchCurrentUserData } from '../../actions';
 import CustomTextInput from '../../components/CustomTextInput/';
 import CustomButton from '../../components/CustomButton/';
+import LayoutContainer from '../../components/LayoutContainer/';
 
 import styles from './styles';
 
@@ -36,11 +36,8 @@ class StartScreen extends Component {
 		const { state } = this;
 
 		return (
-			<LinearGradient
-				colors={['#F83600', '#FE8C00']}
-				start={[0.5, 0]}
-				end={[0, 0.5]}
-				style={styles.gradient}
+			<LayoutContainer
+				customStyles={{ justifyContent: 'center', paddingBottom: 60 }}
 			>
 				<View style={styles.inputContainer}>
 					<CustomTextInput
@@ -51,7 +48,7 @@ class StartScreen extends Component {
 					<CustomButton handlePress={this.handleSignIn} text="ИГРАТЬ" />
 				</View>
 				<KeyboardSpacer topSpacing={-300} />
-			</LinearGradient>
+			</LayoutContainer>
 		);
 	}
 }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, Text, ActivityIndicator } from 'react-native';
-import { LinearGradient } from 'expo';
 import { connect } from 'react-redux';
 
 import styles from './styles';
@@ -10,6 +9,7 @@ import { setCurrentTheme } from '../../actions';
 
 import GoElement from '../../components/GoElement';
 import InfoPanel from '../../components/InfoPanel';
+import LayoutContainer from '../../components/LayoutContainer';
 
 class ThemesScreen extends Component {
 	static navigationOptions = makeNavigationOptions({ title: 'Выбор тем' });
@@ -17,7 +17,7 @@ class ThemesScreen extends Component {
 		const { navigate } = this.props.navigation;
 		const { dispatch } = this.props;
 		dispatch(setCurrentTheme(theme));
-		navigate('Questions');
+		navigate('Questions', { themeTitle: theme.themeTitle });
 	};
 	renderThemeElements = () => {
 		const { currentUser } = this.props;
@@ -56,15 +56,10 @@ class ThemesScreen extends Component {
 	render() {
 		const { data } = this.props.currentUser;
 		return (
-			<LinearGradient
-				colors={['#F83600', '#FE8C00']}
-				start={[0.5, 0]}
-				end={[0, 0.5]}
-				style={styles.gradient}
-			>
+			<LayoutContainer>
 				<View style={styles.themesContainer}>{this.renderThemeElements()}</View>
 				{data && <InfoPanel />}
-			</LinearGradient>
+			</LayoutContainer>
 		);
 	}
 }

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { LinearGradient } from 'expo';
 import { connect } from 'react-redux';
 
 import styles from './styles';
 
 import GoElement from '../../components/GoElement';
 import InfoPanel from '../../components/InfoPanel';
+import LayoutContainer from '../../components/LayoutContainer';
 
 import { makeNavigationOptions } from '../../constants';
 import { setCurrentQuestion } from '../../actions';
@@ -24,42 +24,43 @@ class QuestionsScreen extends Component {
 	static navigationOptions = makeNavigationOptions({
 		title: `Выбор вопроса`,
 	});
+	static navigationOptions = ({ navigation }) => {
+		const { themeTitle } = navigation.state.params;
+		return makeNavigationOptions({
+			title: `Тема: ${themeTitle}`,
+		});
+	};
+
 	handleQuestionPress = questionIndex => {
 		const { props } = this;
 		const { currentTheme, dispatch } = props;
 		const { navigate } = props.navigation;
 		const selectedQuestion = currentTheme.questions[questionIndex];
 		dispatch(setCurrentQuestion(selectedQuestion));
-		navigate('Question');
-	};
-	renderQuestionElements = () => {
-		return questions.map((question, questionIndex) => {
-			return (
-				<GoElement
-					text={question}
-					key={question}
-					specificStyle={{ minWidth: 240 }}
-					handleGoElementPress={() => {
-						this.handleQuestionPress(questionIndex);
-					}}
-				/>
-			);
+		navigate('Question', {
+			questionIndex,
+			currentThemeTitle: currentTheme.themeTitle,
 		});
 	};
+	renderQuestionElements = () => questions.map((question, questionIndex) => (
+		<GoElement
+			text={question}
+			key={question}
+			specificStyle={{ minWidth: 240 }}
+			handleGoElementPress={() => {
+				this.handleQuestionPress(questionIndex);
+			}}
+		/>
+	));
 
 	render() {
 		return (
-			<LinearGradient
-				colors={['#F83600', '#FE8C00']}
-				start={[0.5, 0]}
-				end={[0, 0.5]}
-				style={styles.gradient}
-			>
+			<LayoutContainer>
 				<View style={styles.questionsContainer}>
 					{this.renderQuestionElements()}
 				</View>
 				<InfoPanel />
-			</LinearGradient>
+			</LayoutContainer>
 		);
 	}
 }

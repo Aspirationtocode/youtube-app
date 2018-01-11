@@ -24,10 +24,6 @@ export const fetchCurrentUserData = (dispatch, currentUserName) => async () => {
 	}
 };
 
-export const setCurrentTheme = theme => {
-	return { type: SET_CURRENT_THEME, payload: theme };
-};
+export const setCurrentTheme = theme => ({ type: SET_CURRENT_THEME, payload: theme });
 
-export const setCurrentQuestion = question => {
-	return { type: SET_CURRENT_QUESTION, payload: question };
-};
+export const setCurrentQuestion = question => ({ type: SET_CURRENT_QUESTION, payload: question });
