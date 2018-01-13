@@ -1,10 +1,13 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
+import Dimensions from '../../Dimensions';
 
 const diceWidth = 100;
 const dotWidth = 20;
 const pc = 4.5;
 const sidePadding = diceWidth / pc - dotWidth / 2;
 const centerPadding = diceWidth / 2 - dotWidth / 2;
+
+const { DEVICE_WIDTH, DEVICE_HEIGHT } = Dimensions;
 
 export default EStyleSheet.create({
 	container: {
@@ -21,7 +24,9 @@ export default EStyleSheet.create({
 		backgroundColor: '#fff',
 		borderRadius: diceWidth / 5,
 		borderColor: '#333',
-		position: 'relative',
+		position: 'absolute',
+		right: DEVICE_WIDTH / 2 - diceWidth / 2,
+		top: DEVICE_HEIGHT / 2 - diceWidth / 2,
 	},
 	dot: {
 		width: dotWidth,
@@ -33,7 +38,7 @@ export default EStyleSheet.create({
 	dotNotVisible: {
 		width: dotWidth,
 		height: dotWidth,
-		backgroundColor: 'rgba(0, 0, 0, .1)',
+		backgroundColor: 'rgba(0, 0, 0, .05)',
 		borderRadius: dotWidth / 2,
 		position: 'absolute',
 	},

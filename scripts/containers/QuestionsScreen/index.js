@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import styles from './styles';
 
-import GoElement from '../../components/GoElement';
+import CustomButton from '../../components/CustomButton';
 import InfoPanel from '../../components/InfoPanel';
 import LayoutContainer from '../../components/LayoutContainer';
 
@@ -42,16 +42,16 @@ class QuestionsScreen extends Component {
 			currentThemeTitle: currentTheme.themeTitle,
 		});
 	};
-	renderQuestionElements = () => questions.map((question, questionIndex) => (
-		<GoElement
-			text={question}
-			key={question}
-			specificStyle={{ minWidth: 240 }}
-			handleGoElementPress={() => {
-				this.handleQuestionPress(questionIndex);
-			}}
-		/>
-	));
+	renderQuestionElements = () =>
+		questions.map((question, questionIndex) => (
+			<CustomButton
+				text={question}
+				key={question}
+				handlePress={() => {
+					this.handleQuestionPress(questionIndex);
+				}}
+			/>
+		));
 
 	render() {
 		return (

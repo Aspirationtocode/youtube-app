@@ -2,18 +2,25 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default EStyleSheet.create({
 	buttonStyle: {
-		minHeight: 60,
-		maxWidth: 200,
+		$themeElementWidth: '30%',
+		width: '$themeElementWidth',
+		minWidth: 200,
+		height: 60,
 		backgroundColor: '$mainColor',
-		alignItems: 'center',
 		justifyContent: 'center',
+		alignItems: 'center',
+		borderRadius: 10,
 		shadowColor: 'rgba(0, 0, 0, .16)',
 		shadowOffset: { width: 0, height: 3 },
 		shadowOpacity: 1,
 		shadowRadius: 6,
+		marginBottom: 40,
+		borderColor: '#E6bb0F',
+		borderWidth: 3,
 	},
 	text: {
+		backgroundColor: 'transparent',
 		fontSize: 23,
-		color: '#5E3C14',
+		color: '$mainDarkColor',
 	},
 });

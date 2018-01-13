@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as Animatable from 'react-native-animatable';
 
 import styles from './styles';
-import { renderDiceDots, getRandomArbitrary } from './helpers';
+import { renderDiceDots } from './helpers';
 
 class Dice extends Component {
 	state = {
@@ -10,11 +10,18 @@ class Dice extends Component {
 	};
 	componentWillReceiveProps = nextProps => {
 		const { state } = this;
-		const { letAnimateDice } = nextProps;
-		if (letAnimateDice && !state.displayDice) {
-			this.dice.cubeAnimation().then(endState => {
-				if (endState.finished) {
-					this.dice.cubeTranslation(200);
+		const { enableAnswers, randomNumber, openAlert } = nextProps;
+		if (!state.displayDice) {
+			this.dice.cubeAnimation().then(endCubeAnimationState => {
+				if (endCubeAnimationState.finished) {
+					this.dice.cubeTranslation(400).then(cubeTranslationState => {
+						if (cubeTranslationState.finished) {
+							enableAnswers();
+							if (randomNumber === 1) {
+								openAlert();
+							}
+						}
+					});
 				}
 			});
 			setTimeout(() => {
@@ -26,10 +33,9 @@ class Dice extends Component {
 	};
 
 	animationDuration = 2000;
-	randomNumber = getRandomArbitrary(1, 6);
 
 	render() {
-		const { state } = this;
+		const { state, props } = this;
 		return (
 			<Animatable.View
 				ref={component => {
@@ -40,7 +46,7 @@ class Dice extends Component {
 				duration={this.animationDuration}
 				easing="ease-in-out"
 			>
-				{renderDiceDots(state.displayDice ? this.randomNumber : 0)}
+				{renderDiceDots(state.displayDice ? props.randomNumber : 0)}
 			</Animatable.View>
 		);
 	}

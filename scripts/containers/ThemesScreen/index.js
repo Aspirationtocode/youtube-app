@@ -7,7 +7,7 @@ import styles from './styles';
 import { makeNavigationOptions } from '../../constants';
 import { setCurrentTheme } from '../../actions';
 
-import GoElement from '../../components/GoElement';
+import CustomButton from '../../components/CustomButton';
 import InfoPanel from '../../components/InfoPanel';
 import LayoutContainer from '../../components/LayoutContainer';
 
@@ -41,10 +41,10 @@ class ThemesScreen extends Component {
 		}
 
 		const fetchedRender = currentUser.data.themes.map(theme => (
-			<GoElement
+			<CustomButton
 				text={theme.themeTitle}
 				key={theme._id}
-				handleGoElementPress={() => {
+				handlePress={() => {
 					this.handleThemePress(theme);
 				}}
 			/>

@@ -1,8 +1,8 @@
-import { Dimensions } from 'react-native';
+import Dimensions from './scripts/Dimensions';
 
-const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get('window');
+const { DEVICE_WIDTH, DEVICE_HEIGHT } = Dimensions;
 
-const cubeWidth = 100;
+const diceWidth = 100;
 
 export default {
 	cubeAnimation: {
@@ -18,13 +18,12 @@ export default {
 	},
 	cubeTranslation: {
 		0: {
-			transform: [{ translateX: 0 }, { translateY: 0 }],
+			right: DEVICE_WIDTH / 2 - diceWidth / 2,
+			top: DEVICE_HEIGHT / 2 - diceWidth / 2,
 		},
 		1: {
-			transform: [
-				{ translateX: DEVICE_WIDTH / 2 - cubeWidth },
-				{ translateY: -DEVICE_HEIGHT / 2 + cubeWidth },
-			],
+			right: 15,
+			top: 15,
 		},
 	},
 };

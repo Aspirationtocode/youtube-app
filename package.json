@@ -12,8 +12,6 @@
     "jest-expo": "^23.0.0",
     "react-native-scripts": "1.7.0",
     "react-test-renderer": "16.0.0-beta.5",
-    "reactotron-react-native": "^1.14.0",
-    "reactotron-redux": "^1.13.0",
     "redux-logger": "^3.0.6"
   },
   "main": "./node_modules/react-native-scripts/build/bin/crna-entry.js",
@@ -23,7 +21,6 @@
     "android": "react-native-scripts android",
     "ios": "react-native-scripts ios",
     "test": "node node_modules/jest/bin/jest.js --watch",
-    "postinstall": "rndebugger-open --expo",
     "lint": "eslint --fix ./**/**/*.js",
     "server": "nodemon server.js"
   },
@@ -32,28 +29,23 @@
   },
   "dependencies": {
     "axios": "^0.17.1",
-    "css-to-matrix": "^1.0.0",
+    "cors": "^2.8.4",
     "eslint-config-prettier": "^2.9.0",
     "expo": "^23.0.0",
     "express": "^4.16.2",
     "express-fileupload": "^0.3.0",
-    "lodash.debounce": "^4.0.8",
-    "lodash.throttle": "^4.1.1",
     "mongoose": "^5.0.0-rc1",
-    "react": "^16.2.0",
+    "react": "16.2.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-23.0.0.tar.gz",
     "react-native-animatable": "^1.2.4",
-    "react-native-debugger-open": "^0.3.15",
+    "react-native-dimension": "^1.0.6",
     "react-native-extended-stylesheet": "^0.8.0",
-    "react-native-flip-card": "^3.5.2",
     "react-native-keyboard-spacer": "^0.4.1",
     "react-native-swipe-gestures": "^1.0.2",
     "react-navigation": "^1.0.0-beta.19",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "remote-redux-devtools": "^0.5.12",
-    "remotedev-app": "^0.10.8",
-    "remotedev-rn-debugger": "^0.8.3"
+    "shuffle-array": "^1.0.1"
   }
 }
