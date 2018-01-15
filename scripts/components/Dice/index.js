@@ -12,18 +12,20 @@ class Dice extends Component {
 		const { state } = this;
 		const { enableAnswers, randomNumber, openAlert } = nextProps;
 		if (!state.displayDice) {
-			this.dice.cubeAnimation().then(endCubeAnimationState => {
-				if (endCubeAnimationState.finished) {
-					this.dice.cubeTranslation(400).then(cubeTranslationState => {
-						if (cubeTranslationState.finished) {
-							enableAnswers();
-							if (randomNumber === 1) {
-								openAlert();
+			this.dice
+				.cubeAnimation(this.animationDuration)
+				.then(endCubeAnimationState => {
+					if (endCubeAnimationState.finished) {
+						this.dice.cubeTranslation(400).then(cubeTranslationState => {
+							if (cubeTranslationState.finished) {
+								enableAnswers();
+								if (randomNumber === 1) {
+									openAlert();
+								}
 							}
-						}
-					});
-				}
-			});
+						});
+					}
+				});
 			setTimeout(() => {
 				this.setState({
 					displayDice: true,
@@ -32,7 +34,7 @@ class Dice extends Component {
 		}
 	};
 
-	animationDuration = 2000;
+	animationDuration = 1500;
 
 	render() {
 		const { state, props } = this;

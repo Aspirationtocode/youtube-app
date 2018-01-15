@@ -7,6 +7,7 @@ import shuffle from 'shuffle-array';
 import styles from './styles';
 
 import LayoutContainer from '../../components/LayoutContainer';
+import CustomModal from '../../components/CustomModal';
 import CustomButton from '../../components/CustomButton';
 import Dice from '../../components/Dice';
 
@@ -24,6 +25,8 @@ class QuestionScreen extends Component {
 	state = {
 		letAnimateDice: false,
 		isAnswersVisible: false,
+		answerModalOpen: false,
+		isRightAnswer: null,
 	};
 
 	onSwipeRight = () => {
@@ -33,7 +36,7 @@ class QuestionScreen extends Component {
 	};
 
 	randomNumber = getRandomArbitrary(1, 6);
-
+	currentAnswers = null;
 	enableAnswers = () => {
 		this.setState({
 			isAnswersVisible: true,
@@ -49,20 +52,32 @@ class QuestionScreen extends Component {
 		);
 	};
 
+	handleAnswerPress = (answer, rightAnswer) => {
+		const { currentQuestion } = this.props;
+		const isRightAnswer = answer === rightAnswer;
+		this.setState({
+			answerModalOpen: true,
+			isRightAnswer,
+		});
+	};
+
 	renderAnswers = () => {
 		const { currentQuestion } = this.props;
 		const { answers } = currentQuestion;
+		const rightAnswer = answers[0];
 		const notRightAnswers = answers.slice(1, this.randomNumber);
-		const currentAnswers = shuffle([...notRightAnswers, answers[0]], {
-			copy: true,
-		});
+		if (!this.currentAnswers) {
+			this.currentAnswers = shuffle([...notRightAnswers, rightAnswer], {
+				copy: true,
+			});
+		}
 		if (this.randomNumber > 1) {
-			return currentAnswers.map(answer => (
+			return this.currentAnswers.map((answer, answerIndex) => (
 				<CustomButton
 					text={answer}
-					key={answer}
+					key={`${answer}${answerIndex}`}
 					handlePress={() => {
-						console.log('an');
+						this.handleAnswerPress(answer, rightAnswer);
 					}}
 					specificStyle={{ marginHorizontal: 20 }}
 				/>
@@ -78,7 +93,7 @@ class QuestionScreen extends Component {
 			<GestureRecognizer
 				style={{ flex: 1 }}
 				onSwipeRight={gestureState =>
-					!state.isAnswersVisible && this.onSwipeRight(gestureState)
+					!state.letAnimateDice && this.onSwipeRight(gestureState)
 				}
 			>
 				<LayoutContainer>
@@ -95,6 +110,10 @@ class QuestionScreen extends Component {
 					<View style={styles.answersContainer}>
 						{state.isAnswersVisible && this.renderAnswers()}
 					</View>
+					<CustomModal
+						isOpen={state.answerModalOpen}
+						isRightAnswer={state.isRightAnswer}
+					/>
 				</LayoutContainer>
 			</GestureRecognizer>
 		);

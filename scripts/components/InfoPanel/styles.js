@@ -14,9 +14,9 @@ export default EStyleSheet.create({
 		bottom: 50,
 		height: 160,
 		flex: 1,
+		backgroundColor: 'transparent',
 	},
 	infoPanelContainer: {
-		backgroundColor: 'rgba(255, 255, 255, .8)',
 		borderRadius: '$borderRadius',
 		shadowColor: 'rgba(0, 0, 0, .16)',
 		shadowOffset: { width: 0, height: 3 },
@@ -25,5 +25,15 @@ export default EStyleSheet.create({
 		padding: '$padding',
 		flex: 1,
 		width: '100%',
+		zIndex: 10,
+		backgroundColor: 'transparent',
+	},
+	bg: {
+		position: 'absolute',
+		top: 0,
+		left: 0,
+		height: '100%',
+		width: '100%',
+		borderRadius: '$borderRadius',
 	},
 });

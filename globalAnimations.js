@@ -26,4 +26,14 @@ export default {
 			top: 15,
 		},
 	},
+	statusTextTranslation: {
+		0: {
+			transform: [{ translateY: 0 }],
+			opacity: 0,
+		},
+		1: {
+			transform: [{ translateY: -50 }],
+			opacity: 1,
+		},
+	},
 };

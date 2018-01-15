@@ -16,6 +16,8 @@ import globalAnimations from './globalAnimations';
 EStyleSheet.build({
 	$mainColor: '#E6FF06',
 	$mainDarkColor: '#5E3C14',
+	$modalAnswerRightColor: 'green',
+	$modalAnswerWrongColor: 'red',
 });
 
 Animatable.initializeRegistryWithDefinitions(globalAnimations);

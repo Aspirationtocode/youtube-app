@@ -7,7 +7,7 @@ export default props => {
 	const { customStyles } = props;
 	return (
 		<LinearGradient
-			colors={['#F83600', '#FE8C00']}
+			colors={['#a55de4', '#ba2fd2']}
 			start={[0.5, 0]}
 			end={[0, 0.5]}
 			style={[styles.gradient, customStyles]}

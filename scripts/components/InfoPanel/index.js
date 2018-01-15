@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ImageBackground } from 'react-native';
+import { View, Image } from 'react-native';
 
 import bgImage from '../../../static/images/info-panel-bg.jpg';
 
@@ -9,12 +9,9 @@ import UserInfo from '../UserInfo';
 
 export default () => (
 	<View style={styles.container}>
-		<ImageBackground
-			style={styles.infoPanelContainer}
-			source={bgImage}
-			resizeMode="stretch"
-		>
+		<View style={styles.infoPanelContainer}>
 			<UserInfo />
-		</ImageBackground>
+		</View>
+		<Image source={bgImage} resizeMode="cover" style={styles.bg} />
 	</View>
 );

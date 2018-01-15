@@ -6,7 +6,7 @@ export const SET_CURRENT_QUESTION = 'SET_CURRENT_QUESTION';
 
 export const makeNavigationOptions = specificStyles => {
 	const baseStyles = {
-		headerTintColor: '#F83600',
+		headerTintColor: '#a55de4',
 		headerStyle: {
 			backgroundColor: '#fff',
 			borderBottomColor: 'transparent',

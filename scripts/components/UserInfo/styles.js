@@ -14,6 +14,7 @@ export default EStyleSheet.create({
 		shadowOffset: { width: 5, height: 5 },
 		shadowOpacity: 1,
 		shadowRadius: 6,
+		borderRadius: '$imageSize * .5',
 	},
 	photo: {
 		width: '$imageSize',
