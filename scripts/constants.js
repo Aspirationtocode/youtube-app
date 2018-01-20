@@ -4,7 +4,7 @@ export const ERROR_FETCH_CURRENT_USER_DATA = 'ERROR_FETCH_CURRENT_USER_DATA';
 export const SET_CURRENT_THEME = 'SET_CURRENT_THEME';
 export const SET_CURRENT_QUESTION = 'SET_CURRENT_QUESTION';
 
-export const makeNavigationOptions = specificStyles => {
+export const makeNavigationOptions = (specificStyles, disableBackNav) => {
 	const baseStyles = {
 		headerTintColor: '#a55de4',
 		headerStyle: {
@@ -16,5 +16,14 @@ export const makeNavigationOptions = specificStyles => {
 			shadowRadius: 6,
 		},
 	};
-	return Object.assign({}, baseStyles, specificStyles);
+	const disableBackNavParams = {
+		headerLeft: null,
+		gesturesEnabled: false,
+	};
+	return Object.assign(
+		{},
+		baseStyles,
+		specificStyles,
+		disableBackNav ? disableBackNavParams : {},
+	);
 };

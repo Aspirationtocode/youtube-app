@@ -1,44 +1,44 @@
 import React, { Component } from 'react';
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity, Text, Image } from 'react-native';
 import * as Animatable from 'react-native-animatable';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from './styles';
+import { throttle } from './helpers';
+
+import bgImage from '../../../static/images/info-panel-bg.jpg';
 
 const AnimatableTouchableOpacity = Animatable.createAnimatableComponent(
 	TouchableOpacity,
 );
 
 export default class CustomButton extends Component {
-	state = {
-		canPress: true,
-	};
-	handlePress = () => {
-		this.setState(
-			{
-				canPress: false,
-			},
-			() => {
-				setTimeout(() => {
-					this.setState({
-						canPress: true,
-					});
-				}, 1000);
-			},
-		);
-		if (this.state.canPress) {
-			this.props.handlePress();
-		}
+	types = {
+		regular: styles.regularStyle,
+		inModal: styles.inModalStyle,
 	};
 
 	render() {
 		const { props } = this;
-		const { textStyle, specificStyle } = props;
+		const { textStyle, specificStyle, type, iconName, isImageBg } = props;
 		return (
 			<AnimatableTouchableOpacity
 				activeOpacity={0.6}
-				style={[styles.buttonStyle, specificStyle]}
-				onPress={this.handlePress}
+				style={[this.types[type], specificStyle]}
+				onPress={throttle(props.handlePress, 400)}
 			>
-				<Text style={!textStyle ? styles.text : textStyle}>{props.text}</Text>
+				<Text style={[styles.text, textStyle]}>{props.text}</Text>
+				{iconName && (
+					<Icon
+						name={iconName}
+						size={30}
+						color="#8E8E93"
+						style={styles.icon}
+						onPress={this.handleClearInputText}
+					/>
+				)}
+				{isImageBg && (
+					<Image source={bgImage} resizeMode="cover" style={styles.bg} />
+				)}
 			</AnimatableTouchableOpacity>
 		);
 	}

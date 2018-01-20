@@ -21,9 +21,6 @@ const questions = [
 ];
 
 class QuestionsScreen extends Component {
-	static navigationOptions = makeNavigationOptions({
-		title: `Выбор вопроса`,
-	});
 	static navigationOptions = ({ navigation }) => {
 		const { themeTitle } = navigation.state.params;
 		return makeNavigationOptions({
@@ -45,6 +42,7 @@ class QuestionsScreen extends Component {
 	renderQuestionElements = () =>
 		questions.map((question, questionIndex) => (
 			<CustomButton
+				type="regular"
 				text={question}
 				key={question}
 				handlePress={() => {

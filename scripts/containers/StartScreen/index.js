@@ -45,7 +45,11 @@ class StartScreen extends Component {
 						value={state.currentUserName}
 						handleCurrentUserNameChange={this.handleCurrentUserNameChange}
 					/>
-					<CustomButton handlePress={this.handleSignIn} text="ИГРАТЬ" />
+					<CustomButton
+						type="regular"
+						handlePress={this.handleSignIn}
+						text="ИГРАТЬ"
+					/>
 				</View>
 				<KeyboardSpacer topSpacing={-300} />
 			</LayoutContainer>

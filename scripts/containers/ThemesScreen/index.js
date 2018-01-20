@@ -42,6 +42,7 @@ class ThemesScreen extends Component {
 
 		const fetchedRender = currentUser.data.themes.map(theme => (
 			<CustomButton
+				type="regular"
 				text={theme.themeTitle}
 				key={theme._id}
 				handlePress={() => {

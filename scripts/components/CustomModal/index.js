@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { Text, TouchableOpacity, View, Button, Image } from 'react-native';
+import { connect } from 'react-redux';
+import { View, Button, Image } from 'react-native';
 import Modal from 'react-native-modal';
 import { Video } from 'expo';
+import { NavigationActions } from 'react-navigation';
 import * as Animatable from 'react-native-animatable';
 import styles from './styles';
+import CustomButton from '../CustomButton/';
 
 import videoWrong from '../../../static/videos/video--wrong.mp4';
 import videoRight from '../../../static/videos/video--right.mp4';
@@ -11,25 +14,53 @@ import videoRight from '../../../static/videos/video--right.mp4';
 import answerRight from '../../../static/icons/answer-right.png';
 import answerWrong from '../../../static/icons/answer-wrong.png';
 
-export default class CustomModal extends Component {
+class CustomModal extends Component {
 	state = {
 		isModalVisible: false,
-		isRightAnswer: false,
-	};
-	componentWillReceiveProps = nextProps => {
-		const { isOpen } = nextProps;
-		isOpen && this.showModal();
-		!isOpen && this.hideModal();
 	};
 
-	showModal = isRightAnswer => {
+	componentWillReceiveProps = nextProps => {
+		const { isOpen } = nextProps;
+		if (isOpen) {
+			this.showModal();
+		}
+	};
+
+	showModal = () => {
 		this.setState({ isModalVisible: true });
 	};
 
-	hideModal = isRightAnswer => this.setState({ isModalVisible: false });
+	hideModal = () => this.setState({ isModalVisible: false });
 
+	goToScreen = screen => {
+		this.hideModal();
+		const { themeTitle } = this.props.currentTheme;
+		const navigationConfig = {
+			Themes: {
+				index: 1,
+				actions: [
+					NavigationActions.navigate({ routeName: 'Main' }),
+					NavigationActions.navigate({ routeName: 'Themes' }),
+				],
+			},
+			Questions: {
+				index: 2,
+				actions: [
+					NavigationActions.navigate({ routeName: 'Main' }),
+					NavigationActions.navigate({ routeName: 'Themes' }),
+					NavigationActions.navigate({
+						routeName: 'Questions',
+						params: { themeTitle },
+					}),
+				],
+			},
+		};
+
+		const resetAction = NavigationActions.reset(navigationConfig[screen]);
+		this.props.navigation.dispatch(resetAction);
+	};
 	render() {
-		const { isRightAnswer } = this.props;
+		const { isRightAnswer, currentThemeTitle } = this.props;
 		return (
 			<View style={styles.modalWrapper}>
 				<Modal
@@ -40,7 +71,6 @@ export default class CustomModal extends Component {
 					style={styles.modal}
 					backdropColor="#000"
 				>
-					{/* <Image source={answerBgWrong} resizeMode="stretch" /> */}
 					<Image
 						resizeMode="cover"
 						style={styles.answerImage}
@@ -76,10 +106,45 @@ export default class CustomModal extends Component {
 						>
 							+5
 						</Animatable.Text>
-						<Button title="Close" onPress={this.hideModal} />
+						<CustomButton
+							handlePress={() => {
+								this.goToScreen('Themes');
+							}}
+							type="inModal"
+							isImageBg
+							text="Вернуться к темам"
+							iconName="angle-left"
+							textStyle={{ color: '#000' }}
+							specificStyle={{
+								bottom: 30,
+								left: 30,
+								flexDirection: 'row-reverse',
+							}}
+						/>
+						<CustomButton
+							handlePress={() => {
+								this.goToScreen('Questions');
+							}}
+							type="inModal"
+							isImageBg
+							text={`Вернуться к вопросам темы: \n${currentThemeTitle}`}
+							iconName="angle-right"
+							textStyle={{ color: '#000', textAlign: 'center' }}
+							specificStyle={{
+								bottom: 30,
+								right: 30,
+								flexDirection: 'row',
+							}}
+						/>
 					</View>
 				</Modal>
 			</View>
 		);
 	}
 }
+
+const mapStateToProps = state => ({
+	currentTheme: state.currentTheme,
+});
+
+export default connect(mapStateToProps)(CustomModal);

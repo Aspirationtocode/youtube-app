@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Alert } from 'react-native';
+import { View, Text, Alert, Button } from 'react-native';
 import { connect } from 'react-redux';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import shuffle from 'shuffle-array';
@@ -17,9 +17,12 @@ import { getRandomArbitrary } from './helpers';
 class QuestionScreen extends Component {
 	static navigationOptions = ({ navigation }) => {
 		const { questionIndex, currentThemeTitle } = navigation.state.params;
-		return makeNavigationOptions({
-			title: `Вопрос ${questionIndex + 1} по теме: ${currentThemeTitle}`,
-		});
+		return makeNavigationOptions(
+			{
+				title: `Вопрос ${questionIndex + 1} по теме: ${currentThemeTitle}`,
+			},
+			true,
+		);
 	};
 
 	state = {
@@ -53,12 +56,18 @@ class QuestionScreen extends Component {
 	};
 
 	handleAnswerPress = (answer, rightAnswer) => {
-		const { currentQuestion } = this.props;
 		const isRightAnswer = answer === rightAnswer;
-		this.setState({
-			answerModalOpen: true,
-			isRightAnswer,
-		});
+		this.setState(
+			{
+				answerModalOpen: false,
+			},
+			() => {
+				this.setState({
+					answerModalOpen: true,
+					isRightAnswer,
+				});
+			},
+		);
 	};
 
 	renderAnswers = () => {
@@ -74,6 +83,7 @@ class QuestionScreen extends Component {
 		if (this.randomNumber > 1) {
 			return this.currentAnswers.map((answer, answerIndex) => (
 				<CustomButton
+					type="regular"
 					text={answer}
 					key={`${answer}${answerIndex}`}
 					handlePress={() => {
@@ -88,7 +98,7 @@ class QuestionScreen extends Component {
 
 	render() {
 		const { currentQuestion } = this.props;
-		const { state } = this;
+		const { state, props } = this;
 		return (
 			<GestureRecognizer
 				style={{ flex: 1 }}
@@ -113,6 +123,8 @@ class QuestionScreen extends Component {
 					<CustomModal
 						isOpen={state.answerModalOpen}
 						isRightAnswer={state.isRightAnswer}
+						currentThemeTitle={props.currentTheme.themeTitle}
+						navigation={props.navigation}
 					/>
 				</LayoutContainer>
 			</GestureRecognizer>
@@ -122,6 +134,7 @@ class QuestionScreen extends Component {
 
 const mapStateToProps = state => ({
 	currentQuestion: state.currentQuestion,
+	currentTheme: state.currentTheme,
 });
 
 export default connect(mapStateToProps)(QuestionScreen);

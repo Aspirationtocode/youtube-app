@@ -1,7 +1,7 @@
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 export default EStyleSheet.create({
-	buttonStyle: {
+	regularStyle: {
 		$themeElementWidth: '30%',
 		width: '$themeElementWidth',
 		minWidth: 200,
@@ -18,9 +18,35 @@ export default EStyleSheet.create({
 		borderColor: '#E6bb0F',
 		borderWidth: 3,
 	},
+	inModalStyle: {
+		backgroundColor: 'rgba(255, 255, 255, .9)',
+		justifyContent: 'space-between',
+		alignItems: 'center',
+		width: 420,
+		height: 100,
+		padding: 20,
+		borderRadius: 50,
+		position: 'absolute',
+		shadowColor: 'rgba(0, 0, 0, .86)',
+		shadowOffset: { width: 0, height: 3 },
+		shadowOpacity: 1,
+		shadowRadius: 15,
+	},
 	text: {
 		backgroundColor: 'transparent',
 		fontSize: 23,
 		color: '$mainDarkColor',
+		zIndex: 3,
+	},
+	icon: {
+		zIndex: 2,
+	},
+	bg: {
+		position: 'absolute',
+		right: 0,
+		bottom: 0,
+		width: 420,
+		height: 100,
+		borderRadius: 50,
 	},
 });

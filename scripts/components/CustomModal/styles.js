@@ -39,6 +39,7 @@ export default EStyleSheet.create({
 		height: 200,
 		width: 200,
 		zIndex: 100,
+		opacity: 0.8,
 	},
 	statusText: {
 		color: '#fff',
