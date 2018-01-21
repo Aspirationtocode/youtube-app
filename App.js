@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
 import { Provider, connect } from 'react-redux';
-import thunk from 'redux-thunk';
-import logger from 'redux-logger';
+import { PersistGate } from 'redux-persist/lib/integration/react';
 import * as Animatable from 'react-native-animatable';
 
 import { addNavigationHelpers } from 'react-navigation';
-
-import { createStore, applyMiddleware } from 'redux';
 
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import AppNavigator from './scripts/AppNavigator';
 
-import allReducers from './scripts/reducers';
-
 import globalAnimations from './globalAnimations';
+
+import configureStore from './configureStore';
+
+let { store, persistor } = configureStore();
 
 EStyleSheet.build({
 	$mainColor: '#E6FF06',
@@ -44,13 +43,13 @@ const mapStateToProps = state => ({
 
 const AppWithNavigationState = connect(mapStateToProps)(App);
 
-const store = createStore(allReducers, applyMiddleware(thunk, logger));
-
 class Root extends Component {
 	render() {
 		return (
 			<Provider store={store}>
-				<AppWithNavigationState />
+				<PersistGate loading={null} persistor={persistor}>
+					<AppWithNavigationState />
+				</PersistGate>
 			</Provider>
 		);
 	}

@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add lodash.throttle
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add redux-persist
 
 PATH: 
   C:\Program Files\ConEmu\ConEmu\Scripts;C:\Program Files\ConEmu;C:\Program Files\ConEmu\ConEmu;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Yarn\bin;C:\Users\wwwje\AppData\Local\Microsoft\WindowsApps;C:\Users\wwwje\AppData\Roaming\npm;C:\Users\wwwje\AppData\Local\atom\bin;C:\Users\wwwje\AppData\Local\Yarn\bin
@@ -50,6 +50,7 @@ npm manifest:
       "expo": "^23.0.0",
       "express": "^4.16.2",
       "express-fileupload": "^0.3.0",
+      "lodash.throttle": "^4.1.1",
       "mongoose": "^5.0.0-rc1",
       "react": "16.2.0",
       "react-native": "https://github.com/expo/react-native/archive/sdk-23.0.0.tar.gz",
@@ -4073,6 +4074,10 @@ Lockfile:
       lodash._reinterpolate "^3.0.0"
       lodash.escape "^3.0.0"
   
+  lodash.throttle@^4.1.1:
+    version "4.1.1"
+    resolved "https://registry.yarnpkg.com/lodash.throttle/-/lodash.throttle-4.1.1.tgz#c23e91b710242ac70c37f1e1cda9274cc39bf2f4"
+  
   lodash.zipobject@^4.1.3:
     version "4.1.3"
     resolved "https://registry.yarnpkg.com/lodash.zipobject/-/lodash.zipobject-4.1.3.tgz#b399f5aba8ff62a746f6979bf20b214f964dbef8"
@@ -6867,4 +6872,4 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/yesno/-/yesno-0.0.1.tgz#ffbc04ff3d6f99dad24f7463134e9b92ae41bef6"
 
 Trace: 
-  Error: EPERM: operation not permitted, unlink 'C:\MyProjects\youtube-app\node_modules\win-release\node_modules\.bin'
+  Error: EPERM: operation not permitted, unlink 'C:\MyProjects\youtube-app\node_modules\@expo\json-file\node_modules\.bin'
