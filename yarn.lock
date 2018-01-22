@@ -5117,6 +5117,10 @@ react-native-modal@^4.1.1:
     prop-types "15.5.10"
     react-native-animatable "^1.2.3"
 
+react-native-prompt@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-prompt/-/react-native-prompt-1.0.0.tgz#41e0ec2aa7dd8f12f3a3ee83af9d63c4b670f8a1"
+
 react-native-safe-module@^1.1.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/react-native-safe-module/-/react-native-safe-module-1.2.0.tgz#a23824ca24edc2901913694a76646475113d570d"
@@ -5614,6 +5618,10 @@ rimraf@~2.4.0:
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.4.5.tgz#ee710ce5d93a8fdb856fb5ea8ff0e2d75934b2da"
   dependencies:
     glob "^6.0.1"
+
+rn-prompt@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/rn-prompt/-/rn-prompt-1.0.2.tgz#1cac975a8270035040c5cd051d6092b7b699d737"
 
 rndm@1.2.0:
   version "1.2.0"

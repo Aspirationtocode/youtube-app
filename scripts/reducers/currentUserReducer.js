@@ -4,6 +4,7 @@ import {
 	ERROR_FETCH_CURRENT_USER_DATA,
 	SET_CURRENT_THEME_ID,
 	SET_CURRENT_QUESTION_ID,
+	SET_ANSWER_STATUS,
 } from '../constants';
 
 const initialState = {
@@ -18,43 +19,77 @@ const initialState = {
 const currentUserReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case START_FETCH_CURRENT_USER_DATA: {
-			const newCurrentUser = Object.assign({}, state, {
+			return {
+				...state,
 				fetching: true,
 				fetched: false,
 				error: null,
-			});
-			return newCurrentUser;
+			};
 		}
+
 		case FINISH_FETCH_CURRENT_USER_DATA: {
-			const newCurrentUser = Object.assign({}, state, {
+			return {
+				...state,
 				fetching: false,
 				fetched: true,
 				error: null,
 				data: action.payload,
-			});
-			return newCurrentUser;
+			};
 		}
+
 		case ERROR_FETCH_CURRENT_USER_DATA: {
-			const newCurrentUser = Object.assign({}, state, {
+			return {
+				...state,
 				fetching: false,
 				fetched: false,
 				data: null,
 				error: action.payload,
-			});
-			return newCurrentUser;
+			};
 		}
+
 		case SET_CURRENT_THEME_ID: {
-			const newCurrentUser = Object.assign({}, state, {
+			return {
+				...state,
 				currentThemeId: action.payload,
-			});
-			return newCurrentUser;
+			};
 		}
+
 		case SET_CURRENT_QUESTION_ID: {
-			const newCurrentUser = Object.assign({}, state, {
+			return {
+				...state,
 				currentQuestionId: action.payload,
-			});
-			return newCurrentUser;
+			};
 		}
+
+		case SET_ANSWER_STATUS: {
+			const isRightAnswer = action.payload;
+			const { currentQuestionId, currentThemeId } = state;
+			const newThemes = state.data.themes.map(theme => {
+				if (theme._id === currentThemeId) {
+					return {
+						...theme,
+						questions: theme.questions.map(question => {
+							if (question._id === currentQuestionId) {
+								return {
+									...question,
+									answerStatus: isRightAnswer,
+								};
+							}
+							return question;
+						}),
+					};
+				}
+				return theme;
+			});
+			return {
+				...state,
+				data: {
+					...state.data,
+					themes: newThemes,
+				},
+			};
+		}
+
 		default: {
 			return state;
 		}

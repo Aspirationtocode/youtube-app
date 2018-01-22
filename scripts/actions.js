@@ -4,6 +4,7 @@ import {
 	ERROR_FETCH_CURRENT_USER_DATA,
 	SET_CURRENT_THEME_ID,
 	SET_CURRENT_QUESTION_ID,
+	SET_ANSWER_STATUS,
 } from './constants';
 import db from './db';
 
@@ -28,7 +29,13 @@ export const setCurrentThemeId = themeId => ({
 	type: SET_CURRENT_THEME_ID,
 	payload: themeId,
 });
+
 export const setCurrentQuestionId = questionId => ({
 	type: SET_CURRENT_QUESTION_ID,
 	payload: questionId,
+});
+
+export const setAnswerStatus = isRightAnswer => ({
+	type: SET_ANSWER_STATUS,
+	payload: isRightAnswer,
 });

@@ -3,6 +3,7 @@ export const FINISH_FETCH_CURRENT_USER_DATA = 'FINISH_FETCH_CURRENT_USER_DATA';
 export const ERROR_FETCH_CURRENT_USER_DATA = 'ERROR_FETCH_CURRENT_USER_DATA';
 export const SET_CURRENT_THEME_ID = 'SET_CURRENT_THEME_ID';
 export const SET_CURRENT_QUESTION_ID = 'SET_CURRENT_QUESTION_ID';
+export const SET_ANSWER_STATUS = 'SET_ANSWER_STATUS';
 
 export const makeNavigationOptions = (specificStyles, disableBackNav) => {
 	const baseStyles = {
@@ -28,9 +29,10 @@ export const makeNavigationOptions = (specificStyles, disableBackNav) => {
 	);
 };
 
-export const findElementInArrayById = (id, array) => {
-	return array.find(el => el._id === id);
-};
+export const EXIT_PASSWORD = '132435';
+
+export const findElementInArrayById = (id, array) =>
+	array.find(el => el._id === id);
 
 export const getCurrentThemesAndQuestions = (
 	currentUser,

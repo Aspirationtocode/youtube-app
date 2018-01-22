@@ -8,4 +8,11 @@ export default EStyleSheet.create({
 		flexWrap: 'wrap',
 		justifyContent: 'space-between',
 	},
+	exitButton: {
+		backgroundColor: 'transparent',
+		position: 'absolute',
+		bottom: 0,
+		right: 0,
+		zIndex: 1000,
+	},
 });

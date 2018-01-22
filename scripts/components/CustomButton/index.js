@@ -14,6 +14,7 @@ const AnimatableTouchableOpacity = Animatable.createAnimatableComponent(
 export default class CustomButton extends Component {
 	types = {
 		regular: styles.regularStyle,
+		answered: styles.answeredStyle,
 		inModal: styles.inModalStyle,
 	};
 

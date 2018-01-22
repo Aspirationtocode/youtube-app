@@ -8,14 +8,13 @@ import allReducers from './scripts/reducers/';
 
 const persistConfig = {
 	key: 'root',
-	storage: storage,
-	whitelist: [],
+	storage,
 };
 
 const persistedReducer = persistReducer(persistConfig, allReducers);
 
 export default () => {
-	let store = createStore(persistedReducer, applyMiddleware(thunk, logger));
-	let persistor = persistStore(store);
+	const store = createStore(persistedReducer, applyMiddleware(thunk, logger));
+	const persistor = persistStore(store);
 	return { store, persistor };
 };

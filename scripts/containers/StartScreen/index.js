@@ -14,7 +14,7 @@ import styles from './styles';
 import { makeNavigationOptions } from '../../constants';
 
 class StartScreen extends Component {
-	static navigationOptions = makeNavigationOptions({ title: 'Вход' });
+	static navigationOptions = makeNavigationOptions({ title: 'Вход' }, true);
 	state = {
 		currentUserName: 'Виталий Покашеварим',
 	};

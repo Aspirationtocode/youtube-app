@@ -47,16 +47,29 @@ class QuestionsScreen extends Component {
 		});
 	};
 	renderQuestionElements = () =>
-		questions.map((question, questionIndex) => (
-			<CustomButton
-				type="regular"
-				text={question}
-				key={question}
-				handlePress={() => {
-					this.handleQuestionPress(questionIndex);
-				}}
-			/>
-		));
+		questions.map((question, questionIndex) => {
+			const { currentUser } = this.props;
+			const { currentThemeId } = currentUser;
+			const { currentTheme } = getCurrentThemesAndQuestions(
+				currentUser,
+				currentThemeId,
+			);
+			const { answerStatus } = currentTheme.questions[questionIndex];
+			const isAnswered = answerStatus === false || answerStatus === true;
+			const questionType = isAnswered ? 'answered' : 'regular';
+			return (
+				<CustomButton
+					type={questionType}
+					text={question}
+					key={question}
+					handlePress={() => {
+						if (!isAnswered) {
+							this.handleQuestionPress(questionIndex);
+						}
+					}}
+				/>
+			);
+		});
 
 	render() {
 		return (

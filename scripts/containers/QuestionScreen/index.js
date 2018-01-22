@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Alert, Button } from 'react-native';
+import { View, Text, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import shuffle from 'shuffle-array';
@@ -16,6 +16,7 @@ import {
 	getCurrentThemesAndQuestions,
 } from '../../constants';
 import { getRandomArbitrary } from './helpers';
+import { setAnswerStatus } from '../../actions';
 
 class QuestionScreen extends Component {
 	static navigationOptions = ({ navigation }) => {
@@ -41,7 +42,7 @@ class QuestionScreen extends Component {
 		});
 	};
 
-	randomNumber = getRandomArbitrary(1, 6);
+	randomNumber = getRandomArbitrary(2, 6);
 	currentAnswers = null;
 	enableAnswers = () => {
 		this.setState({
@@ -59,6 +60,7 @@ class QuestionScreen extends Component {
 	};
 
 	handleAnswerPress = (answer, rightAnswer) => {
+		const { dispatch } = this.props;
 		const isRightAnswer = answer === rightAnswer;
 		this.setState(
 			{
@@ -71,21 +73,17 @@ class QuestionScreen extends Component {
 				});
 			},
 		);
+		dispatch(setAnswerStatus(isRightAnswer));
 	};
 
 	renderAnswers = () => {
 		const { currentUser } = this.props;
 		const { currentQuestionId, currentThemeId } = currentUser;
-		const { currentTheme, currentQuestion } = getCurrentThemesAndQuestions(
+		const { currentQuestion } = getCurrentThemesAndQuestions(
 			currentUser,
 			currentThemeId,
 			currentQuestionId,
 		);
-		// const currentTheme = findElementInArrayById(currentThemeId, data.themes);
-		// const currentQuestion = findElementInArrayById(
-		// 	currentQuestionId,
-		// 	currentTheme.questions,
-		// );
 
 		const { answers } = currentQuestion;
 		const rightAnswer = answers[0];

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { AsyncStorage } from 'react-native';
 import { Provider, connect } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import * as Animatable from 'react-native-animatable';
@@ -14,7 +13,7 @@ import globalAnimations from './globalAnimations';
 
 import configureStore from './configureStore';
 
-let { store, persistor } = configureStore();
+const { store, persistor } = configureStore();
 
 EStyleSheet.build({
 	$mainColor: '#E6FF06',

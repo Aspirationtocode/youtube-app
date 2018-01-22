@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, ActivityIndicator } from 'react-native';
+import { View, Text, ActivityIndicator, Button } from 'react-native';
+import Prompt from 'rn-prompt';
 import { connect } from 'react-redux';
 
 import styles from './styles';
 
-import { makeNavigationOptions } from '../../constants';
+import { makeNavigationOptions, EXIT_PASSWORD } from '../../constants';
 import { setCurrentThemeId } from '../../actions';
 
 import CustomButton from '../../components/CustomButton';
@@ -12,7 +13,25 @@ import InfoPanel from '../../components/InfoPanel';
 import LayoutContainer from '../../components/LayoutContainer';
 
 class ThemesScreen extends Component {
-	static navigationOptions = makeNavigationOptions({ title: 'Выбор тем' });
+	static navigationOptions = makeNavigationOptions(
+		{
+			title: 'Выбор тем',
+		},
+		true,
+	);
+	state = {
+		promptVisible: false,
+	};
+	closePrompt() {
+		this.setState({
+			promptVisible: false,
+		});
+	}
+	openPrompt() {
+		this.setState({
+			promptVisible: true,
+		});
+	}
 	handleThemePress = theme => {
 		const { navigate } = this.props.navigation;
 		const { dispatch } = this.props;
@@ -60,6 +79,28 @@ class ThemesScreen extends Component {
 			<LayoutContainer>
 				<View style={styles.themesContainer}>{this.renderThemeElements()}</View>
 				{data && <InfoPanel />}
+				<Prompt
+					title="Выход"
+					placeholder="Введите пароль..."
+					defaultValue=""
+					visible={this.state.promptVisible}
+					onCancel={() => this.closePrompt()}
+					onSubmit={value => {
+						if (value === EXIT_PASSWORD) {
+							this.closePrompt();
+							const { navigate } = this.props.navigation;
+							navigate('Main');
+						}
+						this.closePrompt();
+					}}
+				/>
+				<View style={styles.exitButton}>
+					<Button
+						title="Выйти"
+						color="#fff"
+						onPress={() => this.openPrompt()}
+					/>
+				</View>
 			</LayoutContainer>
 		);
 	}
