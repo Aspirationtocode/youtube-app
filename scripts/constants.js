@@ -1,8 +1,8 @@
 export const START_FETCH_CURRENT_USER_DATA = 'START_FETCH_CURRENT_USER_DATA';
 export const FINISH_FETCH_CURRENT_USER_DATA = 'FINISH_FETCH_CURRENT_USER_DATA';
 export const ERROR_FETCH_CURRENT_USER_DATA = 'ERROR_FETCH_CURRENT_USER_DATA';
-export const SET_CURRENT_THEME = 'SET_CURRENT_THEME';
-export const SET_CURRENT_QUESTION = 'SET_CURRENT_QUESTION';
+export const SET_CURRENT_THEME_ID = 'SET_CURRENT_THEME_ID';
+export const SET_CURRENT_QUESTION_ID = 'SET_CURRENT_QUESTION_ID';
 
 export const makeNavigationOptions = (specificStyles, disableBackNav) => {
 	const baseStyles = {
@@ -26,4 +26,26 @@ export const makeNavigationOptions = (specificStyles, disableBackNav) => {
 		specificStyles,
 		disableBackNav ? disableBackNavParams : {},
 	);
+};
+
+export const findElementInArrayById = (id, array) => {
+	return array.find(el => el._id === id);
+};
+
+export const getCurrentThemesAndQuestions = (
+	currentUser,
+	themeId,
+	questionId,
+) => {
+	const currentTheme = findElementInArrayById(themeId, currentUser.data.themes);
+
+	const currentQuestion = findElementInArrayById(
+		questionId,
+		currentTheme.questions,
+	);
+
+	return {
+		currentTheme,
+		currentQuestion,
+	};
 };

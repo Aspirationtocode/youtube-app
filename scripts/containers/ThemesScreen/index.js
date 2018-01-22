@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import styles from './styles';
 
 import { makeNavigationOptions } from '../../constants';
-import { setCurrentTheme } from '../../actions';
+import { setCurrentThemeId } from '../../actions';
 
 import CustomButton from '../../components/CustomButton';
 import InfoPanel from '../../components/InfoPanel';
@@ -16,7 +16,7 @@ class ThemesScreen extends Component {
 	handleThemePress = theme => {
 		const { navigate } = this.props.navigation;
 		const { dispatch } = this.props;
-		dispatch(setCurrentTheme(theme));
+		dispatch(setCurrentThemeId(theme._id));
 		navigate('Questions', { themeTitle: theme.themeTitle });
 	};
 	renderThemeElements = () => {

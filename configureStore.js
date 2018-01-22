@@ -9,6 +9,7 @@ import allReducers from './scripts/reducers/';
 const persistConfig = {
 	key: 'root',
 	storage: storage,
+	whitelist: [],
 };
 
 const persistedReducer = persistReducer(persistConfig, allReducers);

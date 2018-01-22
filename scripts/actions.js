@@ -2,8 +2,8 @@ import {
 	START_FETCH_CURRENT_USER_DATA,
 	FINISH_FETCH_CURRENT_USER_DATA,
 	ERROR_FETCH_CURRENT_USER_DATA,
-	SET_CURRENT_THEME,
-	SET_CURRENT_QUESTION,
+	SET_CURRENT_THEME_ID,
+	SET_CURRENT_QUESTION_ID,
 } from './constants';
 import db from './db';
 
@@ -24,6 +24,11 @@ export const fetchCurrentUserData = (dispatch, currentUserName) => async () => {
 	}
 };
 
-export const setCurrentTheme = theme => ({ type: SET_CURRENT_THEME, payload: theme });
-
-export const setCurrentQuestion = question => ({ type: SET_CURRENT_QUESTION, payload: question });
+export const setCurrentThemeId = themeId => ({
+	type: SET_CURRENT_THEME_ID,
+	payload: themeId,
+});
+export const setCurrentQuestionId = questionId => ({
+	type: SET_CURRENT_QUESTION_ID,
+	payload: questionId,
+});

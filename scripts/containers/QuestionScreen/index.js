@@ -11,7 +11,10 @@ import CustomModal from '../../components/CustomModal';
 import CustomButton from '../../components/CustomButton';
 import Dice from '../../components/Dice';
 
-import { makeNavigationOptions } from '../../constants';
+import {
+	makeNavigationOptions,
+	getCurrentThemesAndQuestions,
+} from '../../constants';
 import { getRandomArbitrary } from './helpers';
 
 class QuestionScreen extends Component {
@@ -71,7 +74,19 @@ class QuestionScreen extends Component {
 	};
 
 	renderAnswers = () => {
-		const { currentQuestion } = this.props;
+		const { currentUser } = this.props;
+		const { currentQuestionId, currentThemeId } = currentUser;
+		const { currentTheme, currentQuestion } = getCurrentThemesAndQuestions(
+			currentUser,
+			currentThemeId,
+			currentQuestionId,
+		);
+		// const currentTheme = findElementInArrayById(currentThemeId, data.themes);
+		// const currentQuestion = findElementInArrayById(
+		// 	currentQuestionId,
+		// 	currentTheme.questions,
+		// );
+
 		const { answers } = currentQuestion;
 		const rightAnswer = answers[0];
 		const notRightAnswers = answers.slice(1, this.randomNumber);
@@ -97,7 +112,13 @@ class QuestionScreen extends Component {
 	};
 
 	render() {
-		const { currentQuestion } = this.props;
+		const { currentUser } = this.props;
+		const { currentQuestionId, currentThemeId } = currentUser;
+		const { currentTheme, currentQuestion } = getCurrentThemesAndQuestions(
+			currentUser,
+			currentThemeId,
+			currentQuestionId,
+		);
 		const { state, props } = this;
 		return (
 			<GestureRecognizer
@@ -123,7 +144,7 @@ class QuestionScreen extends Component {
 					<CustomModal
 						isOpen={state.answerModalOpen}
 						isRightAnswer={state.isRightAnswer}
-						currentThemeTitle={props.currentTheme.themeTitle}
+						currentThemeTitle={currentTheme.themeTitle}
 						navigation={props.navigation}
 					/>
 				</LayoutContainer>
@@ -133,8 +154,7 @@ class QuestionScreen extends Component {
 }
 
 const mapStateToProps = state => ({
-	currentQuestion: state.currentQuestion,
-	currentTheme: state.currentTheme,
+	currentUser: state.currentUser,
 });
 
 export default connect(mapStateToProps)(QuestionScreen);

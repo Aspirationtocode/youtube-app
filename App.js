@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { AsyncStorage } from 'react-native';
 import { Provider, connect } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import * as Animatable from 'react-native-animatable';

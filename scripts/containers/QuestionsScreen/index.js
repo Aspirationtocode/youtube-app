@@ -8,8 +8,11 @@ import CustomButton from '../../components/CustomButton';
 import InfoPanel from '../../components/InfoPanel';
 import LayoutContainer from '../../components/LayoutContainer';
 
-import { makeNavigationOptions } from '../../constants';
-import { setCurrentQuestion } from '../../actions';
+import {
+	makeNavigationOptions,
+	getCurrentThemesAndQuestions,
+} from '../../constants';
+import { setCurrentQuestionId } from '../../actions';
 
 const questions = [
 	'Вопрос 1',
@@ -29,11 +32,15 @@ class QuestionsScreen extends Component {
 	};
 
 	handleQuestionPress = questionIndex => {
-		const { props } = this;
-		const { currentTheme, dispatch } = props;
-		const { navigate } = props.navigation;
+		const { navigate } = this.props.navigation;
+		const { dispatch, currentUser } = this.props;
+		const { currentThemeId } = currentUser;
+		const { currentTheme } = getCurrentThemesAndQuestions(
+			currentUser,
+			currentThemeId,
+		);
 		const selectedQuestion = currentTheme.questions[questionIndex];
-		dispatch(setCurrentQuestion(selectedQuestion));
+		dispatch(setCurrentQuestionId(selectedQuestion._id));
 		navigate('Question', {
 			questionIndex,
 			currentThemeTitle: currentTheme.themeTitle,
@@ -64,7 +71,6 @@ class QuestionsScreen extends Component {
 }
 
 const mapStateToProps = state => ({
-	currentTheme: state.currentTheme,
 	currentUser: state.currentUser,
 });
 

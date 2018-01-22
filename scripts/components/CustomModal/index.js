@@ -14,6 +14,8 @@ import videoRight from '../../../static/videos/video--right.mp4';
 import answerRight from '../../../static/icons/answer-right.png';
 import answerWrong from '../../../static/icons/answer-wrong.png';
 
+import { findElementInArrayById } from '../../constants';
+
 class CustomModal extends Component {
 	state = {
 		isModalVisible: false,
@@ -34,7 +36,10 @@ class CustomModal extends Component {
 
 	goToScreen = screen => {
 		this.hideModal();
-		const { themeTitle } = this.props.currentTheme;
+		const { currentUser } = this.props;
+		const { currentThemeId, data } = currentUser;
+		const currentTheme = findElementInArrayById(currentThemeId, data.themes);
+		const { themeTitle } = currentTheme;
 		const navigationConfig = {
 			Themes: {
 				index: 1,
@@ -144,7 +149,7 @@ class CustomModal extends Component {
 }
 
 const mapStateToProps = state => ({
-	currentTheme: state.currentTheme,
+	currentUser: state.currentUser,
 });
 
 export default connect(mapStateToProps)(CustomModal);
