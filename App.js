@@ -8,6 +8,7 @@ import { addNavigationHelpers } from 'react-navigation';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import AppNavigator from './scripts/AppNavigator';
+import socket from './scripts/initSocketIo';
 import InfoPanel from './scripts/components/InfoPanel';
 
 import globalAnimations from './globalAnimations';

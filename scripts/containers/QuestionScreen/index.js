@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
-import { View, Text, Alert } from 'react-native';
+import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import GestureRecognizer from 'react-native-swipe-gestures';
 import shuffle from 'shuffle-array';
+import PopupDialog, {
+	FadeAnimation,
+	DialogTitle,
+} from 'react-native-popup-dialog';
+import { PacmanIndicator } from 'react-native-indicators';
+import socket from '../../initSocketIo';
+
+const fadeAnimation = new FadeAnimation({
+	toValue: 0,
+});
 
 import styles from './styles';
 
@@ -42,7 +52,7 @@ class QuestionScreen extends Component {
 		});
 	};
 
-	randomNumber = getRandomArbitrary(2, 6);
+	randomNumber = getRandomArbitrary(1, 6);
 	points = null;
 	currentAnswers = null;
 	enableAnswers = () => {
@@ -51,25 +61,23 @@ class QuestionScreen extends Component {
 		});
 	};
 
-	openAlert = () => {
-		Alert.alert(
-			'Alert Title',
-			'',
-			[
-				{
-					text: 'OK',
-					onPress: () => {
-						console.log('OK Pressed');
-					},
-				},
-			],
-			{ cancelable: false },
+	showPopup = () => {
+		const { currentUser } = this.props;
+		const { currentQuestionId, currentThemeId } = currentUser;
+		const { currentQuestion } = getCurrentThemesAndQuestions(
+			currentUser,
+			currentThemeId,
+			currentQuestionId,
 		);
+		socket.emit('get-confirmation', currentQuestion);
+		socket.on('set-confirmation-client', isRightAnswer => {
+			this.setGameStatus(isRightAnswer);
+		});
+		this.popupDialog.show();
 	};
 
-	handleAnswerPress = (answer, rightAnswer) => {
+	setGameStatus = isRightAnswer => {
 		const { dispatch } = this.props;
-		const isRightAnswer = answer === rightAnswer;
 		this.points = this.randomNumber === 1 ? 7 : this.randomNumber;
 		this.setState(
 			{
@@ -83,6 +91,12 @@ class QuestionScreen extends Component {
 			},
 		);
 		dispatch(setGameStatus(isRightAnswer, this.points));
+	};
+
+	handleAnswerPress = (answer, rightAnswer) => {
+		const { dispatch } = this.props;
+		const isRightAnswer = answer === rightAnswer;
+		this.setGameStatus(isRightAnswer);
 	};
 
 	renderAnswers = () => {
@@ -140,7 +154,7 @@ class QuestionScreen extends Component {
 						Смахни вправо для вращения игрального кубика
 					</Text>
 					<Dice
-						openAlert={this.openAlert}
+						showPopup={this.showPopup}
 						randomNumber={this.randomNumber}
 						letAnimateDice={state.letAnimateDice}
 						enableAnswers={this.enableAnswers}
@@ -155,6 +169,30 @@ class QuestionScreen extends Component {
 						navigation={props.navigation}
 						points={this.points}
 					/>
+					<PopupDialog
+						dialogTitle={
+							<DialogTitle
+								haveTitleBar={false}
+								titleTextStyle={{ fontSize: 22, textAlign: 'center' }}
+								titleStyle={{ backgroundColor: 'transparent', marginTop: 20 }}
+								title="Ожидайте подтверждение ведущего..."
+							/>
+						}
+						ref={popupDialog => {
+							this.popupDialog = popupDialog;
+						}}
+						dialogAnimation={fadeAnimation}
+						dismissOnTouchOutside={false}
+						dismissOnHardwareBackPress={false}
+						dialogStyle={{
+							width: 300,
+							borderRadius: 150,
+						}}
+					>
+						<View style={styles.popupContainer}>
+							<PacmanIndicator color="#a55de4" count={8} size={120} />
+						</View>
+					</PopupDialog>
 				</LayoutContainer>
 			</GestureRecognizer>
 		);

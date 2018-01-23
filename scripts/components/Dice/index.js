@@ -10,7 +10,7 @@ class Dice extends Component {
 	};
 	componentWillReceiveProps = nextProps => {
 		const { state } = this;
-		const { enableAnswers, randomNumber, openAlert } = nextProps;
+		const { enableAnswers, randomNumber, showPopup } = nextProps;
 		if (!state.displayDice) {
 			this.dice
 				.cubeAnimation(this.animationDuration)
@@ -20,18 +20,22 @@ class Dice extends Component {
 							if (cubeTranslationState.finished) {
 								enableAnswers();
 								if (randomNumber === 1) {
-									openAlert();
+									showPopup();
 								}
 							}
 						});
 					}
 				});
-			setTimeout(() => {
+			this.timeoutId = setTimeout(() => {
 				this.setState({
 					displayDice: true,
 				});
 			}, this.animationDuration / 2);
 		}
+	};
+
+	componentWillUnmount = () => {
+		clearTimeout(this.timeoutId);
 	};
 
 	animationDuration = 1500;

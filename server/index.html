@@ -21,7 +21,19 @@
       </label>
     </fieldset>
   </form>
+	<div id="confirm-popup">
+		<div class="popup-container">
+			<div class="popup-container__header">Никитка, подтверди</div>
+			<div class="popup-container__par">Игрок ответил правильно?</div>
+			<div class="popup-container-buttons-container">
+				<button class="popup-container__button" data-status="true">Да</button>
+				<button class="popup-container__button" data-status="false">Нет</button>
+			</div>
+		</div>
+  </div>
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="js/jquery.popupoverlay.js"></script>
+  <script src="js/socket.io.js"></script>
   <script src="js/index.js"></script>
 </body>
 </html>

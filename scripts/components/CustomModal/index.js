@@ -28,6 +28,10 @@ class CustomModal extends Component {
 		}
 	};
 
+	componentWillUnmount = () => {
+		clearTimeout(this.timeoutId);
+	};
+
 	showModal = () => {
 		this.setState({ isModalVisible: true });
 	};
@@ -89,7 +93,7 @@ class CustomModal extends Component {
 						shouldPlay
 						style={styles.bg}
 						onReadyForDisplay={() => {
-							setTimeout(() => {
+							this.timeoutId = setTimeout(() => {
 								this.statusText.statusTextTranslation(1000);
 							}, 500);
 						}}

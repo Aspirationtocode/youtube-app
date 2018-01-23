@@ -22,4 +22,10 @@ export default EStyleSheet.create({
 		fontSize: 20,
 		marginBottom: 40,
 	},
+	popupContainer: {
+		padding: 30,
+		flex: 1,
+		borderBottomLeftRadius: 10,
+		borderBottomRightRadius: 10,
+	},
 });

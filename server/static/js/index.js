@@ -1,5 +1,6 @@
 $(() => {
-	$('input').change(function () {
+	$('#confirm-popup').popup();
+	$('input').change(function() {
 		const label = $(this)
 			.parent()
 			.find('span');
@@ -14,8 +15,19 @@ $(() => {
 		}
 		return false;
 	});
-	$('#uploadUser').on('submit', function (e) {
+	$('#uploadUser').on('submit', function(e) {
 		e.preventDefault();
 		this.submit();
+	});
+
+	var socket = io();
+	socket.on('wait-confirmation', () => {
+		$('#confirm-popup').popup('show');
+	});
+
+	$('.popup-container__button').on('click', function() {
+		const answerStatus = JSON.parse($(this).data('status'));
+		socket.emit('set-confirmation', answerStatus);
+		$('#confirm-popup').popup('hide');
 	});
 });
