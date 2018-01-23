@@ -8,6 +8,7 @@ import { addNavigationHelpers } from 'react-navigation';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import AppNavigator from './scripts/AppNavigator';
+import InfoPanel from './scripts/components/InfoPanel';
 
 import globalAnimations from './globalAnimations';
 
@@ -49,6 +50,7 @@ class Root extends Component {
 			<Provider store={store}>
 				<PersistGate loading={null} persistor={persistor}>
 					<AppWithNavigationState />
+					<InfoPanel />
 				</PersistGate>
 			</Provider>
 		);

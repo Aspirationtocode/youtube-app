@@ -4,7 +4,8 @@ import {
 	ERROR_FETCH_CURRENT_USER_DATA,
 	SET_CURRENT_THEME_ID,
 	SET_CURRENT_QUESTION_ID,
-	SET_ANSWER_STATUS,
+	SET_GAME_STATUS,
+	RESET_GAME_STATUS,
 } from './constants';
 import db from './db';
 
@@ -35,7 +36,14 @@ export const setCurrentQuestionId = questionId => ({
 	payload: questionId,
 });
 
-export const setAnswerStatus = isRightAnswer => ({
-	type: SET_ANSWER_STATUS,
-	payload: isRightAnswer,
+export const setGameStatus = (isRightAnswer, points) => ({
+	type: SET_GAME_STATUS,
+	payload: {
+		isRightAnswer,
+		points,
+	},
+});
+
+export const resetGameStatus = () => ({
+	type: RESET_GAME_STATUS,
 });

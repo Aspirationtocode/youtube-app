@@ -4,7 +4,7 @@ import {
 	ERROR_FETCH_CURRENT_USER_DATA,
 	SET_CURRENT_THEME_ID,
 	SET_CURRENT_QUESTION_ID,
-	SET_ANSWER_STATUS,
+	SET_GAME_STATUS,
 } from '../constants';
 
 const initialState = {
@@ -61,8 +61,8 @@ const currentUserReducer = (state = initialState, action) => {
 			};
 		}
 
-		case SET_ANSWER_STATUS: {
-			const isRightAnswer = action.payload;
+		case SET_GAME_STATUS: {
+			const { isRightAnswer } = action.payload;
 			const { currentQuestionId, currentThemeId } = state;
 			const newThemes = state.data.themes.map(theme => {
 				if (theme._id === currentThemeId) {

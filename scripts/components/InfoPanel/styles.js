@@ -12,6 +12,7 @@ export default EStyleSheet.create({
 		width: '80%',
 		position: 'absolute',
 		bottom: 50,
+		left: '10%',
 		height: 160,
 		flex: 1,
 		backgroundColor: 'transparent',

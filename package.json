@@ -39,6 +39,7 @@
     "react": "16.2.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-23.0.0.tar.gz",
     "react-native-animatable": "^1.2.4",
+    "react-native-circular-progress": "^0.1.2",
     "react-native-dimension": "^1.0.6",
     "react-native-extended-stylesheet": "^0.8.0",
     "react-native-keyboard-spacer": "^0.4.1",

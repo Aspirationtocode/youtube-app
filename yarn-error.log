@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add rn-prompt
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add react-native-circular-progress
 
 PATH: 
   C:\Program Files\ConEmu\ConEmu\Scripts;C:\Program Files\ConEmu;C:\Program Files\ConEmu\ConEmu;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\nodejs\;C:\Program Files\Git\cmd;C:\Program Files (x86)\Yarn\bin;C:\Users\wwwje\AppData\Local\Microsoft\WindowsApps;C:\Users\wwwje\AppData\Roaming\npm;C:\Users\wwwje\AppData\Local\atom\bin;C:\Users\wwwje\AppData\Local\Yarn\bin
@@ -67,6 +67,7 @@ npm manifest:
       "redux": "^3.7.2",
       "redux-persist": "^5.5.0",
       "redux-thunk": "^2.2.0",
+      "rn-prompt": "^1.0.2",
       "shuffle-array": "^1.0.1"
     }
   }
@@ -5696,6 +5697,10 @@ Lockfile:
     dependencies:
       glob "^6.0.1"
   
+  rn-prompt@^1.0.2:
+    version "1.0.2"
+    resolved "https://registry.yarnpkg.com/rn-prompt/-/rn-prompt-1.0.2.tgz#1cac975a8270035040c5cd051d6092b7b699d737"
+  
   rndm@1.2.0:
     version "1.2.0"
     resolved "https://registry.yarnpkg.com/rndm/-/rndm-1.2.0.tgz#f33fe9cfb52bbfd520aa18323bc65db110a1b76c"
@@ -6882,4 +6887,4 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/yesno/-/yesno-0.0.1.tgz#ffbc04ff3d6f99dad24f7463134e9b92ae41bef6"
 
 Trace: 
-  Error: EPERM: operation not permitted, unlink 'C:\MyProjects\youtube-app\node_modules\win-release\node_modules\.bin'
+  Error: EPERM: operation not permitted, unlink 'C:\MyProjects\youtube-app\node_modules\babel-preset-es2015-node\node_modules\.bin'

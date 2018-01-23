@@ -16,7 +16,7 @@ import {
 	getCurrentThemesAndQuestions,
 } from '../../constants';
 import { getRandomArbitrary } from './helpers';
-import { setAnswerStatus } from '../../actions';
+import { setGameStatus } from '../../actions';
 
 class QuestionScreen extends Component {
 	static navigationOptions = ({ navigation }) => {
@@ -43,6 +43,7 @@ class QuestionScreen extends Component {
 	};
 
 	randomNumber = getRandomArbitrary(2, 6);
+	points = null;
 	currentAnswers = null;
 	enableAnswers = () => {
 		this.setState({
@@ -54,7 +55,14 @@ class QuestionScreen extends Component {
 		Alert.alert(
 			'Alert Title',
 			'',
-			[{ text: 'OK', onPress: () => console.log('OK Pressed') }],
+			[
+				{
+					text: 'OK',
+					onPress: () => {
+						console.log('OK Pressed');
+					},
+				},
+			],
 			{ cancelable: false },
 		);
 	};
@@ -62,6 +70,7 @@ class QuestionScreen extends Component {
 	handleAnswerPress = (answer, rightAnswer) => {
 		const { dispatch } = this.props;
 		const isRightAnswer = answer === rightAnswer;
+		this.points = this.randomNumber === 1 ? 7 : this.randomNumber;
 		this.setState(
 			{
 				answerModalOpen: false,
@@ -73,7 +82,7 @@ class QuestionScreen extends Component {
 				});
 			},
 		);
-		dispatch(setAnswerStatus(isRightAnswer));
+		dispatch(setGameStatus(isRightAnswer, this.points));
 	};
 
 	renderAnswers = () => {
@@ -144,6 +153,7 @@ class QuestionScreen extends Component {
 						isRightAnswer={state.isRightAnswer}
 						currentThemeTitle={currentTheme.themeTitle}
 						navigation={props.navigation}
+						points={this.points}
 					/>
 				</LayoutContainer>
 			</GestureRecognizer>

@@ -76,13 +76,15 @@ class ThemesScreen extends Component {
 	render() {
 		const { data } = this.props.currentUser;
 		return (
-			<LayoutContainer>
+			<LayoutContainer customStyles={{ zIndex: 100 }}>
 				<View style={styles.themesContainer}>{this.renderThemeElements()}</View>
-				{data && <InfoPanel />}
+				{/* {data && <InfoPanel />} */}
 				<Prompt
 					title="Выход"
 					placeholder="Введите пароль..."
 					defaultValue=""
+					submitText="Выйти"
+					cancelText="Закрыть"
 					visible={this.state.promptVisible}
 					onCancel={() => this.closePrompt()}
 					onSubmit={value => {

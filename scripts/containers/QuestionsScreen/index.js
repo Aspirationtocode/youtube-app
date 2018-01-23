@@ -73,11 +73,10 @@ class QuestionsScreen extends Component {
 
 	render() {
 		return (
-			<LayoutContainer>
+			<LayoutContainer customStyles={{ zIndex: 100 }}>
 				<View style={styles.questionsContainer}>
 					{this.renderQuestionElements()}
 				</View>
-				<InfoPanel />
 			</LayoutContainer>
 		);
 	}

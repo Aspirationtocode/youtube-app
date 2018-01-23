@@ -6,11 +6,13 @@ const baseStyles = {
 	alignItems: 'center',
 	justifyContent: 'center',
 	paddingHorizontal: 12,
+	marginRight: 12,
+	minWidth: 160,
 };
 
 export default EStyleSheet.create({
 	positiveContainer: Object.assign({}, baseStyles, {
-		backgroundColor: '#1AFF00',
+		backgroundColor: '#37e557',
 	}),
 	negativeContainer: Object.assign({}, baseStyles, {
 		backgroundColor: '#FF0000',

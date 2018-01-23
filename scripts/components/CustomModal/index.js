@@ -65,7 +65,7 @@ class CustomModal extends Component {
 		this.props.navigation.dispatch(resetAction);
 	};
 	render() {
-		const { isRightAnswer, currentThemeTitle } = this.props;
+		const { isRightAnswer, currentThemeTitle, points } = this.props;
 		return (
 			<View style={styles.modalWrapper}>
 				<Modal
@@ -109,7 +109,7 @@ class CustomModal extends Component {
 							}}
 							style={styles.statusText}
 						>
-							+5
+							{isRightAnswer ? `+${points}` : ''}
 						</Animatable.Text>
 						<CustomButton
 							handlePress={() => {

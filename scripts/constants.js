@@ -3,7 +3,8 @@ export const FINISH_FETCH_CURRENT_USER_DATA = 'FINISH_FETCH_CURRENT_USER_DATA';
 export const ERROR_FETCH_CURRENT_USER_DATA = 'ERROR_FETCH_CURRENT_USER_DATA';
 export const SET_CURRENT_THEME_ID = 'SET_CURRENT_THEME_ID';
 export const SET_CURRENT_QUESTION_ID = 'SET_CURRENT_QUESTION_ID';
-export const SET_ANSWER_STATUS = 'SET_ANSWER_STATUS';
+export const SET_GAME_STATUS = 'SET_GAME_STATUS';
+export const RESET_GAME_STATUS = 'RESET_GAME_STATUS';
 
 export const makeNavigationOptions = (specificStyles, disableBackNav) => {
 	const baseStyles = {
@@ -50,4 +51,17 @@ export const getCurrentThemesAndQuestions = (
 		currentTheme,
 		currentQuestion,
 	};
+};
+
+const countQuestions = currentUser => {
+	let questionsCount = 0;
+	currentUser.data.themes.forEach(theme => {
+		questionsCount += theme.questions.length;
+	});
+	return questionsCount;
+};
+
+export const getCompletePercent = (currentUser, answeredCount) => {
+	const questionCount = countQuestions(currentUser);
+	return answeredCount / questionCount * 100;
 };

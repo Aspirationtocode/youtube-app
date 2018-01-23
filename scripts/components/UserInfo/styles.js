@@ -15,23 +15,32 @@ export default EStyleSheet.create({
 		shadowOpacity: 1,
 		shadowRadius: 6,
 		borderRadius: '$imageSize * .5',
+		position: 'relative',
 	},
 	photo: {
 		width: '$imageSize',
 		height: '$imageSize',
 		borderRadius: '$imageSize * .5',
-		borderColor: 'rgba(255, 255, 255, .7)',
-		borderWidth: 3,
 	},
 	pointsContainer: {
 		flexDirection: 'row',
+		alignItems: 'center',
 	},
 	userName: {
 		fontSize: 28,
 		color: '$mainDarkColor',
 	},
+	pointsText: {
+		fontSize: 24,
+		color: '$mainDarkColor',
+	},
 	leftInfoContainer: {
 		justifyContent: 'space-between',
 		height: '100%',
+	},
+	circularProgressContainer: {
+		position: 'absolute',
+		top: -8,
+		left: -8,
 	},
 });

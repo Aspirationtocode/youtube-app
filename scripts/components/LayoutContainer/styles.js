@@ -6,5 +6,6 @@ export default EStyleSheet.create({
 		alignItems: 'center',
 		justifyContent: 'flex-start',
 		paddingTop: 50,
+		position: 'relative',
 	},
 });

@@ -43,10 +43,10 @@ export default EStyleSheet.create({
 	},
 	statusText: {
 		color: '#fff',
-		fontSize: 45,
+		fontSize: 90,
 		position: 'absolute',
-		bottom: Dimensions.DEVICE_HEIGHT / 2,
-		right: 30,
+		bottom: Dimensions.DEVICE_HEIGHT / 2 - 100,
+		right: 100,
 		opacity: 0,
 	},
 });
