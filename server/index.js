@@ -27,8 +27,7 @@ app.use(
 );
 
 app.get('/', (req, res) => {
-	console.log('IPAD CONNECTED');
-	res.sendFile(`${__dirname}/index.html`);
+	res.sendFile(`${__dirname}/static/index.html`);
 });
 
 app.use(cors({ origin: '*' }));
