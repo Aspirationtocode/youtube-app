@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { ScreenOrientation } from 'expo';
 import { Provider, connect } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import * as Animatable from 'react-native-animatable';
@@ -46,6 +47,12 @@ const mapStateToProps = state => ({
 const AppWithNavigationState = connect(mapStateToProps)(App);
 
 class Root extends Component {
+	componentDidMount() {
+		ScreenOrientation.allow(ScreenOrientation.Orientation.LANDSCAPE_RIGHT);
+	}
+	componentWillUnmount() {
+		ScreenOrientation.allow(ScreenOrientation.Orientation.LANDSCAPE_RIGHT);
+	}
 	render() {
 		return (
 			<Provider store={store}>

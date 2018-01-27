@@ -22,6 +22,7 @@ export const makeNavigationOptions = (specificStyles, disableBackNav) => {
 		headerLeft: null,
 		gesturesEnabled: false,
 	};
+
 	return Object.assign(
 		{},
 		baseStyles,

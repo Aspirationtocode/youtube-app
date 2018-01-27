@@ -15,6 +15,8 @@ export default EStyleSheet.create({
 		backgroundColor: 'transparent',
 		fontSize: 26,
 		marginBottom: 40,
+		width: '80%',
+		textAlign: 'center',
 	},
 	hintText: {
 		color: '#fff',

@@ -1,1 +1,3 @@
 server/static/js/index.js
+server/static/js/jquery.popupoverlay.js
+server/static/js/socket.io.js

@@ -20,7 +20,7 @@ $(() => {
 		this.submit();
 	});
 
-	var socket = io();
+	const socket = io();
 	socket.on('wait-confirmation', () => {
 		$('#confirm-popup').popup('show');
 	});

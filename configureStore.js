@@ -13,8 +13,14 @@ const persistConfig = {
 
 const persistedReducer = persistReducer(persistConfig, allReducers);
 
+const middleWares = [thunk];
+
+if (__DEV__) {
+	middleWares.push(logger);
+}
+
 export default () => {
-	const store = createStore(persistedReducer, applyMiddleware(thunk, logger));
+	const store = createStore(persistedReducer, applyMiddleware(...middleWares));
 	const persistor = persistStore(store);
 	return { store, persistor };
 };

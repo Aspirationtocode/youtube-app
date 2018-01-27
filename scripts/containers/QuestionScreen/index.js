@@ -52,7 +52,7 @@ class QuestionScreen extends Component {
 		});
 	};
 
-	randomNumber = getRandomArbitrary(1, 6);
+	randomNumber = getRandomArbitrary(1, 1);
 	points = null;
 	currentAnswers = null;
 	enableAnswers = () => {

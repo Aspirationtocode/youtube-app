@@ -15,7 +15,8 @@ export default ({ points }) => {
 			>
 				<Text style={styles.text}>{`${Math.abs(
 					points,
-				)} ${currentStatus}`}</Text>
+				)} ${currentStatus}`}
+				</Text>
 			</View>
 		);
 	}
